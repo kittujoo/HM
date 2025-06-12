@@ -1,0 +1,107 @@
+✅ Basic Selenium Interview Questions
+What is Selenium?
+
+What are the components of Selenium?
+
+Selenium IDE
+
+Selenium RC (deprecated)
+
+Selenium WebDriver
+
+Selenium Grid
+
+What are the limitations of Selenium?
+
+What programming languages does Selenium support?
+
+What types of testing can you perform with Selenium?
+
+What browsers are supported by Selenium WebDriver?
+
+🔍 Element Interaction
+How do you find elements in Selenium?
+
+By ID, Name, Class, Tag, XPath, CSS Selector, Link Text, etc.
+
+What is the difference between findElement() and findElements()?
+
+How do you handle dropdowns in Selenium?
+
+How do you perform mouse and keyboard actions?
+
+🕒 Synchronization & Waits
+What are the types of waits in Selenium?
+
+Implicit Wait
+
+Explicit Wait
+
+Fluent Wait
+
+When would you prefer WebDriverWait over ImplicitWait?
+
+🧱 Locator Strategies
+Difference between XPath and CSS Selector?
+
+Absolute vs Relative XPath — explain with example
+
+Which locator is the fastest and why?
+
+🧪 Test Automation Framework
+Have you worked with any framework like POM (Page Object Model)?
+
+How do you handle reusable components?
+
+How do you structure your Selenium project?
+
+What is the Page Factory in Selenium?
+
+How do you integrate Selenium with Pytest/TestNG/JUnit?
+
+🖼️ Handling Special Cases
+How do you handle popups/alerts in Selenium?
+
+How do you switch between frames and windows?
+
+How do you handle hidden elements or elements not interactable?
+
+How to upload a file using Selenium WebDriver?
+
+📷 Utilities
+How do you capture screenshots in Selenium?
+
+How do you generate test reports?
+
+How do you run Selenium tests in headless mode?
+
+How to run tests in parallel using Selenium Grid or Pytest-xdist?
+
+🚀 Advanced
+What is Selenium Grid? How do you use it?
+
+Explain how to handle dynamic web elements.
+
+Have you implemented CI/CD with Selenium in Jenkins?
+
+Explain your Selenium test execution on Docker or cloud platforms (e.g., SauceLabs, BrowserStack).
+
+🤔 Scenario-Based Questions
+You click a button, but nothing happens — how would you debug it?
+
+A test fails randomly. How would you approach fixing it?
+
+Element is present but not clickable — what could be wrong?
+
+🧠 Bonus: Conceptual
+Difference between close() and quit()
+
+What is StaleElementReferenceException? How to handle it?
+
+How to handle CAPTCHA in Selenium?
+
+Can Selenium handle desktop apps or mobile apps? Why not?
+
+What alternatives do you know besides Selenium?
+
+
