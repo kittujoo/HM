@@ -1,0 +1,6 @@
+#Requirements for local environment
+-r base.txt
+grpcio==1.41.1
+grpcio-tools==1.41.1
+toml==0.10.2
+websockets==12.0

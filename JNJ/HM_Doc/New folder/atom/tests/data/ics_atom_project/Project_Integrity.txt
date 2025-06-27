@@ -1,0 +1,13 @@
+Waters Project Integrity Report
+
+Database ID: 2432412974
+Project Name: ics_atom_project
+
+Test: Checking for database schema export files
+  Result: Successfully verified CRC of export file ics_atom_project_INF.CKS
+  Result: Successfully verified CRC of export file ics_atom_project_EXP.CKS
+Test: Fetching list of channels in project
+  Result: No channels found in this project
+
+
+***** Project Integrity Test for Project: "ics_atom_project" Completed with NO Failures *****

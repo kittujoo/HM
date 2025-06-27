@@ -1,0 +1,26 @@
+# Specifies the base Docker image for all subsequent commands
+FROM arm64v8/ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+  apt install -y software-properties-common && \
+  add-apt-repository ppa:saiarcot895/chromium-beta && \
+  apt-get update && \
+  apt-get install -y \
+  unzip \
+  ssh \
+  net-tools \
+  iputils-ping \
+  python3-pip \
+  python3-dev \
+  chromium-browser \
+  chromium-chromedriver && \
+  ln -s /usr/bin/python3 /usr/bin/python && \
+  python -m pip install --upgrade pip
+  
+ENV PATH /usr/lib/chromium-browser:$PATH
+
+COPY requirements/tests_execution.txt tests_execution.txt
+COPY requirements/base.txt base.txt
+RUN pip install -r tests_execution.txt

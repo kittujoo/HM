@@ -1,0 +1,125 @@
+#!/usr/bin/env groovy _
+
+pipeline {
+    agent {
+        node {
+            label 'ubuntu'
+            customWorkspace "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/${env.BUILD_NUMBER}"
+        }
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        skipDefaultCheckout true
+        timeout(time: 10, unit: 'HOURS')
+        timestamps()
+    }
+    parameters {
+        string defaultValue: '', description: 'Enter the IP of the AWS deployment VM. If no IP is provided then a new VM will be created with the below iSym and Kiosk versions.', name: 'TARGET_HOST_NAME', trim: true
+        string defaultValue: 'latest_develop', description: 'Enter iSym version (the value is ignored if an existing VM is used). Use "latest_branchName" to test against any branch: "latest_develop" for develop branch.', name: 'ISYM_VERSION', trim: true
+        string defaultValue: 'latest_develop', description: 'Enter ISPP (Kiosk) version (the value is ignored if an existing VM is used). Use "latest_branchName" to test against any branch: "latest_develop" for develop branch.', name: 'KIOSK_VERSION', trim: true
+        string defaultValue: 'rest_api_get_state or kiosk_smoke_test_access', description: 'Enter the tag of the test(s) you want to run - Please note, this pipeline doesn\'t do any validation on this string.', name: 'TEST_FILTER', trim: true
+        string name: 'TIMEOUT', defaultValue: '36000', description: "Maximum test execution time in seconds after which test execution will be forcibly stopped and marked as failed", trim: true
+    }
+
+    environment {
+        BITBUCKET_CREDS = credentials('codeta03-readonly')
+    }
+    stages {
+        stage('Check for fail fast') {
+            steps {
+                script {
+                    if (BUILD_NUMBER == '1') {
+                        error('Aborting the first build, due to auto propagated parameters')
+                    }
+                    if (!env.TIMEOUT.isInteger()){
+                        error('Timeout parameter should be positive integer')
+                    }
+                }
+            }
+        }
+        stage('Checkout repositories') {
+            steps {
+                script {
+                    if (!params.TARGET_HOST_NAME?.trim() && (!params.ISYM_VERSION?.trim() || !params.KIOSK_VERSION?.trim()))
+                        error("Either TARGET_HOST_NAME was empty or one of ISYM_VERSION or KIOSK_VERSION")
+                }
+
+                dir('atom') {
+                    checkout scm
+                }
+                dir("piper-runner") {
+                    git branch: "master", credentialsId: "codeta03-readonly", url: 'https://code.waters.com/bitbucket/scm/devops/piper-runner.git'
+                }
+            }
+        }
+
+        stage('Deploy simulation environment') {
+            when {
+                expression { params.TARGET_HOST_NAME == '' }
+            }
+            steps {
+                dir("piper-runner") {
+                    script {
+                        def output = sh(script: "python3 runner.py Deploy --isym ${params.ISYM_VERSION} --platform ${params.KIOSK_VERSION} --deployed-by ${env.BUILD_USER_EMAIL}", returnStdout: true)
+                        def json = ""
+                        def matcher = output =~ /(?s)(\{.*})/
+                        if (matcher.find()) {
+                            json = matcher.group(1)
+                            matcher = null
+                        } else {
+                            matcher = null
+                            currentBuild.result = 'ABORTED'
+                            error("Failed to obtain simulator env info, check details: [$output]")
+                        }
+                        println("Deployment configuration:\n$json")
+                        def jsonObj = readJSON text: json
+                        env.ISYM_IP = jsonObj['AccessIp'] ?: ''
+                        env.ISYM_VERSION = jsonObj?.get('Inputs')?.get('Isym-app') ?: ""
+                        env.DEPLOYMENT_ID = jsonObj['DeploymentId']
+                        if (!(env.ISYM_IP ==~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)) {
+                            currentBuild.result = 'ABORTED'
+                            error("Failed to obtain simulator env ip, check details: [$output]")
+                        }
+                    }
+                }
+            }
+        }
+        stage('IntegrationTest') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE', message: "Tests execution failed.") {
+                    sh label: 'IntegrationTest', returnStdout: false, script: """
+                           sudo apt-get update && sudo apt-get --fix-broken install -y && sudo apt-get install -y python3-pip python3-dev python3.8-venv
+                           python3 ./piper-runner/runner.py --project-home ./atom --config_file ./atom/devops-config/config-Simulation.xml --consumer_variables app_commit=$env.GIT_COMMIT host=${env.ISYM_IP ?: params.TARGET_HOST_NAME} test_filter="${params.TEST_FILTER}" timeout=${params.TIMEOUT}
+                        """
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'atom/results/**/*', excludes: 'atom/results/allure-results/**/*', fingerprint: true
+                    allure includeProperties: false, jdk: '', results: [[path: 'atom/results/allure-results/']]
+                    junit allowEmptyResults: true, testResults: "atom/results/pytest-results/*.*"
+                }
+            }
+        }
+        stage('Delete simulated environment') {
+            when {
+                expression { env.DEPLOYMENT_ID != null && env.DEPLOYMENT_ID != '' }
+            }
+            steps {
+                dir("piper-runner") {
+                    script {
+                        sh(script: "python3 runner.py Delete-Deployment --deployment-id ${env.DEPLOYMENT_ID}", returnStdout: true)
+                    }
+                }
+            }
+        }
+    }
+    post {
+        // Clean after build
+        always {
+            script {
+                cleanWs()
+            }
+        }
+    }
+}

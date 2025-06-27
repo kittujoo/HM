@@ -1,0 +1,79 @@
+
+Connected to: Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.14.0.0.0
+Export done in WE8ISO8859P1 character set and AL16UTF16 NCHAR character set
+. exporting pre-schema procedural objects and actions
+. exporting foreign function library names for user W_PREDEFINED_LRUNNING_DATA_000
+. exporting PUBLIC type synonyms
+. exporting private type synonyms
+. exporting object type definitions for user W_PREDEFINED_LRUNNING_DATA_000
+About to export W_PREDEFINED_LRUNNING_DATA_000's objects ...
+. exporting database links
+. exporting sequence numbers
+. exporting cluster definitions
+. about to export W_PREDEFINED_LRUNNING_DATA_000's tables via Conventional Path ...
+. . exporting table                     AUDITTRAIL          0 rows exported
+. . exporting table                       CALCURVE          0 rows exported
+. . exporting table                          CALIB          0 rows exported
+. . exporting table                   CHROMATOGRAM          0 rows exported
+. . exporting table                 CHROMSYSCONFIG          2 rows exported
+. . exporting table                        DRAWDEF          0 rows exported
+. . exporting table                    FIELDCUSTOM         23 rows exported
+. . exporting table                       FRACTION          0 rows exported
+. . exporting table                       INJ2SSET          0 rows exported
+. . exporting table                      INJECTION          0 rows exported
+. . exporting table                   INJECTIONLOG          0 rows exported
+. . exporting table                      INSTMATCH          0 rows exported
+. . exporting table                        LIBRARY          0 rows exported
+. . exporting table            LINCOMPARISONRESULT          0 rows exported
+. . exporting table                LINEARITYRESULT          0 rows exported
+. . exporting table                        LSCALIB          0 rows exported
+. . exporting table                METHEQUILRESULT          0 rows exported
+. . exporting table                         METHOD          7 rows exported
+. . exporting table            MILLDATABASEVERSION          1 rows exported
+. . exporting table                 MSULIBSPECTRUM          0 rows exported
+. . exporting table                           PEAK          0 rows exported
+. . exporting table                        PEAKGPC          0 rows exported
+. . exporting table                       PEAKGPCV          0 rows exported
+. . exporting table                         PEAKMS          0 rows exported
+. . exporting table                        PEAKPDA          0 rows exported
+. . exporting table                    PREFERENCES         47 rows exported
+. . exporting table               PROJECTINTEGRITY          7 rows exported
+. . exporting table                         REGION          0 rows exported
+. . exporting table                        REPORTS          0 rows exported
+. . exporting table                         RESULT          0 rows exported
+. . exporting table                      RESULTSET          0 rows exported
+. . exporting table               ROBUSTNESSRESULT          0 rows exported
+. . exporting table                  RSCOMPSUMMARY          0 rows exported
+. . exporting table                         RSDATA          0 rows exported
+. . exporting table                      RSSUMMARY          0 rows exported
+. . exporting table                      SAMPLESET          0 rows exported
+. . exporting table             SAMPLESETRECORDING          0 rows exported
+. . exporting table                        SIGNOFF          0 rows exported
+. . exporting table                      STRUCTURE          0 rows exported
+. . exporting table                    STUDYVIEWAS          0 rows exported
+. . exporting table                       SUITPEAK          0 rows exported
+. . exporting table                  UVLIBSPECTRUM          0 rows exported
+. . exporting table                VALIDATIONSTUDY          0 rows exported
+. . exporting table                    VALTESTDATA          0 rows exported
+. . exporting table                  VALTESTRESULT          0 rows exported
+. . exporting table                           VIAL          2 rows exported
+. . exporting table                     VIEWFILTER          0 rows exported
+. . exporting table                    VIEWTEMPIDS          0 rows exported
+. exporting synonyms
+. exporting views
+. exporting stored procedures
+. exporting operators
+. exporting referential integrity constraints
+. exporting triggers
+. exporting indextypes
+. exporting bitmap, functional and extensible indexes
+. exporting posttables actions
+. exporting materialized views
+. exporting snapshot logs
+. exporting job queues
+. exporting refresh groups and children
+. exporting dimensions
+. exporting post-schema procedural objects and actions
+. exporting statistics
+Export terminated successfully without warnings.

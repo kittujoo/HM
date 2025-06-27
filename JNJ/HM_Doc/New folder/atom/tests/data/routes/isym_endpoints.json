@@ -1,0 +1,4507 @@
+{
+    "endpoints": [
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/channels",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.ChannelConfiguration",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+		{
+		  "requestHandler": "SystemManagerHandler",
+		  "endpoint": "/datasystem/acquisition/conditioncolumn",
+		  "requests": [
+			{
+			  "verb": "POST",
+			  "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemNonInjectRuntime",
+			  "nbPayload": "",
+			  "publicTopic": "",
+			  "internalTopic": ""
+			}
+		  ]
+		},
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/equilibrate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemNonInjectRuntime",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/exclusivemode",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Proto.V1.SetExclusiveModeRequest,ISYM.System.Proto.V1.SetExclusiveModeReply",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Proto.V1.GetExclusiveModeReply",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/inject",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemInject",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemInjectionDetails",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/inject/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/method",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaMethod",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaAcquisitionMethod",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/method/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/monitorbaseline",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemNonInjectRuntime",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/postrunreport",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaReport",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/purgeinjector",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaMethod",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/samplequeue",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemSampleQueue",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemSampleQueue",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/softinject",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemSoftInjectParams",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/sysprep",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaMethod",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/systemsuitability",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemSuitability",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemSuitability",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/triggersetmethod",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemNonInjectRuntime",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/validatesamplesetonrun",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaSampleSetValidation,ISYM.System.Behavior.Proto.V1.SystemMetaSampleSetValidationResults",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/validatesamplesetonrun/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaSampleSetValidationResults",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/validatesamplesetonrun/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/validatesamplesetonsubmit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaSampleSetValidation,ISYM.System.Behavior.Proto.V1.SystemMetaSampleSetValidationResults",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/washneedle",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnMetaWashNeedle",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/acquisition/wetprime",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaWetPrime",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/columnhistory",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.ColumnHistory",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/datasystem/context",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemContext",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemContext",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/absorbance",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvAbsorbance",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/autocloseshutter",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvAutoCloseShutterOption",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvAutoCloseShutterOption",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/detection/tuv/behavior/calibratewavelength",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaTuvWavelengthCalibration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/detection/tuv/behavior/calibratewavelength/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/detection/tuv/behavior/calibratewavelength/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Behavior.Proto.V1.TuvCalibrationValues",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/detection/tuv/behavior/calibratewavelength/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/detection/tuv/behavior/calibratewavelength/status",
+                    "internalTopic": "Status:Activity:SystemTuvWavelengthCalibration:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/detection/tuv/behavior/calibratewavelength/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaTuvWavelengthCalibration",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/behavior/replacelamp",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/behavior/replacelamp/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/behavior/replacelamp/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/behavior/replacelampcompleted",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/behavior/replacelampcompleted/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/behavior/replacelampcompleted/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvRepeatLampInformation",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/behavior/replacelampcompleted/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/detection/tuv/behavior/verifywavelengthcalibration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaTuvWavelengthCalibration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/detection/tuv/behavior/verifywavelengthcalibration/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/detection/tuv/behavior/verifywavelengthcalibration/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Behavior.Proto.V1.TuvCalibrationValues",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/detection/tuv/behavior/verifywavelengthcalibration/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/detection/tuv/behavior/verifywavelengthcalibration/status",
+                    "internalTopic": "Status:Activity:SystemTuvVerifyWavelengthCalibration:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/detection/tuv/behavior/verifywavelengthcalibration/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaTuvWavelengthCalibration",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/calibration",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Behavior.Proto.V1.TuvStoredCalibrationValues",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/command/autozero",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/command/autozero/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/command/calibratewavelength",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Detection.Tuv.Behavior.Proto.V1.TuvCalibration,No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/command/verifywavelengthcalibration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/configuration/autozerooffsets",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvAutoZeroOffsets",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/devicestate",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.Cpu3kDeviceState",
+                    "publicTopic": "/detection/tuv/devicestate",
+                    "internalTopic": "Status:Instrument:Tuv#.*:ISYM.Cpu3kCommon.Proto.V1.DeviceState:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/door",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonRepeatDoorState",
+                    "publicTopic": "/detection/tuv/door",
+                    "internalTopic": "Status:Instrument:Tuv#.*:ISYM._Common.Proto.V1.CommonRepeatDoorState:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/doorlightconfiguration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Cpu3kCommon.Proto.V1.LightConfiguration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Cpu3kCommon.Proto.V1.LightConfiguration",
+                    "publicTopic": "/detection/tuv/doorlightconfiguration",
+                    "internalTopic": "Status:Instrument:Tuv#.*:ISYM.Cpu3kCommon.Proto.V1.LightConfiguration:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/endlampwarmup",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/flowcellinfo",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvFlowCellInformation",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvFlowCellInformation",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/lamp",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvLampStateCommand",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection._Det_Common.Proto.V1.DetLampR",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/lamp/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/lamphistory",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvLampHistory",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/lampintensity",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvLampIntensityTestResult",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvLampIntensityTestResult",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/lampintensitytest",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/lampintensitytest/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/lampintensitytest/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvLampIntensityTestResult",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/lampintensitytest/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/leaksensor/configuration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonRepeatLeakSensorConfiguration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/leaksensor/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonRepeatLeakSensorStatus",
+                    "publicTopic": "/detection/tuv/leaksensor/status",
+                    "internalTopic": "Status:Instrument:Tuv#.*:ISYM._Common.Proto.V1.CommonRepeatLeakSensorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/opticalfilteroption",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvOpticalFilterOption",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvOpticalFilterOption",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/reboot",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.Cpu3kCommon.Proto.V1.RebootType",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/usagecounter",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounter",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/usagecounter/all",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounterList",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/usagecounter/lamphours",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounter",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/usagecounter/lamphours/limit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SetCounterLimit",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/usagecounter/limit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/usagecounter/limit/default",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/usagecounter/reset",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/wavelength",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvWavelength",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvWavelength",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "TuvHandler",
+            "endpoint": "/detection/tuv/wavelength/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "RoutesApiHandler",
+            "endpoint": "/routes",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/aspirationpump",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnAspirationPumpState",
+                    "publicTopic": "/samplemanagement/sm-ftn/aspirationpump",
+                    "internalTopic": "Event:Instrument:Ftn#.*:ISYM.Autosampler.Ftn.Proto.V1.NotifyAspirationPumpChanged:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/barcodeheater",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnBarcodeHeater",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnBarcodeHeater",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibratehardstop",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibratehardstop/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibratehardstop/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Behavior.Proto.V1.FtnWashTowerHardStopCalibration",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibratehardstop/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/calibratehardstop/status",
+                    "internalTopic": "Status:Activity:FtnCalibrateWashTowerHardStop:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateneedle",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateneedle/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateneedle/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Behavior.Proto.V1.FtnNeedleCalibrationInfo",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateneedle/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/calibrateneedle/status",
+                    "internalTopic": "Status:Activity:FtnCalibrateNeedle:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvance",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Behavior.Proto.V1.FtnPlateAdvanceCalibration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvance/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Behavior.Proto.V1.FtnPlateAdvanceCalibrationValues",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvance/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/calibrateplateadvance/status",
+                    "internalTopic": "Status:Activity:FtnCalibratePlateAdvanceCalibrate:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvance/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Behavior.Proto.V1.FtnPlateAdvanceCalibration",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvancecleanup",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvancecleanup/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/calibrateplateadvancecleanup/status",
+                    "internalTopic": "Status:Activity:FtnCalibratePlateAdvanceCleanup:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvanceend",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvanceend/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/calibrateplateadvanceend/status",
+                    "internalTopic": "Status:Activity:FtnCalibratePlateAdvanceFinish:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvanceinit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvanceinit/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibrateplateadvanceinit/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/calibrateplateadvanceinit/status",
+                    "internalTopic": "Status:Activity:FtnCalibratePlateAdvanceInit:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibraterotaryplatter",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibraterotaryplatter/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Behavior.Proto.V1.FtnRotaryPlatterCalibrationInfo",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibraterotaryplatter/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/calibraterotaryplatter/status",
+                    "internalTopic": "Status:Activity:FtnCalibrateRotaryPlatterCalibrate:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibraterotaryplatterend",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibraterotaryplatterend/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/calibraterotaryplatterend/status",
+                    "internalTopic": "Status:Activity:FtnCalibrateRotaryPlatterFinish:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibraterotaryplatterinit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibraterotaryplatterinit/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/calibraterotaryplatterinit/status",
+                    "internalTopic": "Status:Activity:FtnCalibrateRotaryPlatterInit:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibratetopofplatesensor",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibratetopofplatesensor/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibratetopofplatesensor/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Behavior.Proto.V1.FtnTopOfPlateSensorCalibration",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/calibratetopofplatesensor/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/calibratetopofplatesensor/status",
+                    "internalTopic": "Status:Activity:FtnCalibrateTopOfPlateSensor:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/heatercoolertest",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/heatercoolertest/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/heatercoolertest/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Behavior.Proto.V1.SystemFtnHeaterCoolerTestResult",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/heatercoolertest/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/heatercoolertest/status",
+                    "internalTopic": "Status:Activity:FtnHeaterCoolerTest:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/needlewash",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/needlewash/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/needlewash/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/needlewash/status",
+                    "internalTopic": "Status:Activity:FtnRefillNeedleWash:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/routine/primesealwash",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnPrimeSealWash",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/routine/primesealwash/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/routine/primesealwash/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/routine/primesealwash/status",
+                    "internalTopic": "Status:Activity:FtnPrimeSealWash:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/routine/primesealwash/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnPrimeSealWash",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/washneedle",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnMetaWashNeedle",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/washneedle/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/washneedle/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/behavior/washneedle/status",
+                    "internalTopic": "Status:Activity:FtnWashNeedle:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/behavior/washneedle/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnMetaWashNeedle",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/betadriveservicelocation",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/checkvialspresence",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Behavior.Proto.V1.FtnPlateAdvanceCalibration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/devicestate",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.Cpu3kDeviceState",
+                    "publicTopic": "/samplemanagement/sm-ftn/devicestate",
+                    "internalTopic": "Status:Instrument:Ftn#.*:ISYM.Cpu3kCommon.Proto.V1.DeviceState:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/door",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonRepeatDoorState",
+                    "publicTopic": "/samplemanagement/sm-ftn/door",
+                    "internalTopic": "Status:Instrument:Ftn#.*:ISYM._Common.Proto.V1.CommonRepeatDoorState:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/doorlightconfiguration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Cpu3kCommon.Proto.V1.LightConfiguration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Cpu3kCommon.Proto.V1.LightConfiguration",
+                    "publicTopic": "/samplemanagement/sm-ftn/doorlightconfiguration",
+                    "internalTopic": "Status:Instrument:Ftn#.*:ISYM.Cpu3kCommon.Proto.V1.LightConfiguration:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/injectvalve",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnInjectValveW",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnInjectValveR",
+                    "publicTopic": "/samplemanagement/sm-ftn/injectvalve",
+                    "internalTopic": "Event:Instrument:Ftn#.*:ISYM.Autosampler.Ftn.Proto.V1.ExecInjectValveResponse:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/injectvalve/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/injectvalve/status",
+                    "internalTopic": "Status:Activity:FtnInjectValve:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/leaksensor/configuration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonRepeatLeakSensorConfiguration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/leaksensor/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonRepeatLeakSensorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/leaksensor/status",
+                    "internalTopic": "Status:Instrument:Ftn#.*:ISYM._Common.Proto.V1.CommonRepeatLeakSensorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/needleposition",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnNeedlePositionCommand",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnNeedlePosition",
+                    "publicTopic": "/samplemanagement/sm-ftn/needleposition",
+                    "internalTopic": "Status:Instrument:Ftn#.*:ISYM.SampleManagement.Ftn.Proto.V1.FtnNeedlePosition:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/needleposition/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/needleposition/status",
+                    "internalTopic": "Status:Activity:FtnSetNeedlePosition:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/plateconfiguration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnMetaPlateConfigurationList",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnMetaPlateConfigurationList",
+                    "publicTopic": "/samplemanagement/sm-ftn/plateconfiguration",
+                    "internalTopic": "Status:Instrument:Ftn#.*:ISYM.Autosampler.Ftn.Proto.V1.ServiceNotifyPlateConfigurationValue:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/platterposition",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnPlatePositionCommand",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/platterposition/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/samplemanagement/sm-ftn/platterposition/status",
+                    "internalTopic": "Status:Activity:FtnSetPlatterPosition:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/reboot",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.Cpu3kCommon.Proto.V1.RebootType",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/samplelocationlist",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnSampleLocationList",
+                    "publicTopic": "/samplemanagement/sm-ftn/samplelocationlist",
+                    "internalTopic": "Status:Instrument:Ftn#.*:ISYM.Autosampler.Ftn.Proto.V1.ServiceNotifySampleLocationListValue:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/samplepressure",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnSamplePressure",
+                    "publicTopic": "/samplemanagement/sm-ftn/samplepressure",
+                    "internalTopic": "Status:Instrument:Ftn#.*:SamplePressureStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/sealwashpumpstate",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnSealWashPumpState",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnSealWashPumpState",
+                    "publicTopic": "/samplemanagement/sm-ftn/sealwashpumpstate",
+                    "internalTopic": "Status:Instrument:Ftn#.*:ISYM.Autosampler.Ftn.Proto.V1.SealWashPumpState:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/temperature",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnSampleTemperatureW",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnSampleTemperatureR",
+                    "publicTopic": "/samplemanagement/sm-ftn/temperature",
+                    "internalTopic": "Status:Instrument:Ftn#.*:SampleTemperatureStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/temperaturecontrol",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnThermalControlState",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnThermalControlState",
+                    "publicTopic": "/samplemanagement/sm-ftn/temperaturecontrol",
+                    "internalTopic": "Status:Instrument:Ftn#.*:ThermalControlStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/usagecounter",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounter",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/usagecounter/all",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounterList",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/usagecounter/injectioncount",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounter",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/usagecounter/limit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/usagecounter/limit/default",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "FtnHandler",
+            "endpoint": "/samplemanagement/sm-ftn/usagecounter/reset",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/separation/cm/behavior/heatercoolertest",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/separation/cm/behavior/heatercoolertest/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/separation/cm/behavior/heatercoolertest/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Separation.Chc.Behavior.Proto.V1.SystemChcHeaterCoolerTestResult",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/separation/cm/behavior/heatercoolertest/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/separation/cm/behavior/heatercoolertest/status",
+                    "internalTopic": "Status:Activity:ChcHeaterCoolerTest:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/chamber1/temperature",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Separation.Chc.Proto.V1.ChcColumnTemperatureW",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Separation.Chc.Proto.V1.ChcColumnTemperatureR",
+                    "publicTopic": "/separation/cm/chamber1/temperature",
+                    "internalTopic": "Status:Instrument:Chc#.*:ColumnTemperatureStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/chamber1/temperaturecontrol",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Separation.Chc.Proto.V1.ChcThermalControlState",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Separation.Chc.Proto.V1.ChcThermalControlState",
+                    "publicTopic": "/separation/cm/chamber1/temperaturecontrol",
+                    "internalTopic": "Status:Instrument:Chc#.*:ThermalControlStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/columninfo",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Separation.Chc.Proto.V1.ChcColumnInfo",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/command/scancolumntag",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/command/scancolumntag/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/devicestate",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.Cpu3kDeviceState",
+                    "publicTopic": "/separation/cm/devicestate",
+                    "internalTopic": "Status:Instrument:Chc#.*:ISYM.Cpu3kCommon.Proto.V1.DeviceState:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/door",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonRepeatDoorState",
+                    "publicTopic": "/separation/cm/door",
+                    "internalTopic": "Status:Instrument:Chc#.*:ISYM._Common.Proto.V1.CommonRepeatDoorState:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/doorlightconfiguration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Cpu3kCommon.Proto.V1.LightConfiguration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Cpu3kCommon.Proto.V1.LightConfiguration",
+                    "publicTopic": "/separation/cm/doorlightconfiguration",
+                    "internalTopic": "Status:Instrument:Chc#.*:ISYM.Cpu3kCommon.Proto.V1.LightConfiguration:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/leaksensor/configuration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonRepeatLeakSensorConfiguration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/leaksensor/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonRepeatLeakSensorStatus",
+                    "publicTopic": "/separation/cm/leaksensor/status",
+                    "internalTopic": "Status:Instrument:Chc#.*:ISYM._Common.Proto.V1.CommonRepeatLeakSensorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/reboot",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.Cpu3kCommon.Proto.V1.RebootType",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/usagecounter",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounter",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/usagecounter/all",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounterList",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/usagecounter/limit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/usagecounter/limit/default",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "ChcHandler",
+            "endpoint": "/separation/cm/usagecounter/reset",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/accumulatorpressure",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmAccumulatorPressure",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/beginpumpheadmaintenance",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmBeginPumpHeadMaintenance",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/beginpumpheadmaintenance/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/beginpumpheadmaintenance/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmBeginPumpHeadMaintenance",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/primeline",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmMetaPrimePump",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/primeline/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/primeline/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/primeline/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmMetaPrimePump",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/primepump",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmMetaPrimePump",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/primepump/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/primepump/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/primepump/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmMetaPrimePump",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/resetandinitialize",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/behavior/routine/resetandinitialize/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/command/stopflow",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/command/stopflow/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/degasserpressure",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmDegasserPressure",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/deltapressure",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmDeltaPressure",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/deltapressurelimit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmDeltaPressureLimit",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmDeltaPressureLimit",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/devicestate",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.Cpu3kDeviceState",
+                    "publicTopic": "/solventmanagement/qsm/devicestate",
+                    "internalTopic": "Status:Instrument:Qsm#.*:ISYM.Cpu3kCommon.Proto.V1.DeviceState:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/door",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonRepeatDoorState",
+                    "publicTopic": "/solventmanagement/qsm/door",
+                    "internalTopic": "Status:Instrument:Qsm#.*:ISYM._Common.Proto.V1.CommonRepeatDoorState:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/doorlightconfiguration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Cpu3kCommon.Proto.V1.LightConfiguration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Cpu3kCommon.Proto.V1.LightConfiguration",
+                    "publicTopic": "/solventmanagement/qsm/doorlightconfiguration",
+                    "internalTopic": "Status:Instrument:Qsm#.*:ISYM.Cpu3kCommon.Proto.V1.LightConfiguration:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/flow",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement._Solv_Common.Proto.V1.SolvFlowRateAndCompositionW",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement._Solv_Common.Proto.V1.SolvFlowRateAndCompositionR",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/flow/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/flowcontrol",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement._Solv_Common.Proto.V1.SolvFlowControlW",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement._Solv_Common.Proto.V1.SolvFlowControlR",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/flowcontrol/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/flowramprate",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmFlowRampRate",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmFlowRampRate",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/fullflowcontrol",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement._Solv_Common.Proto.V1.SolvFullFlowControlW",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement._Solv_Common.Proto.V1.SolvFullFlowControlR",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/fullflowcontrol/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/gradientproportioningvalve",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmGradientProportioningValveControl",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmGradientProportioningValveControl",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/leaksensor/configuration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonRepeatLeakSensorConfiguration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/leaksensor/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonRepeatLeakSensorStatus",
+                    "publicTopic": "/solventmanagement/qsm/leaksensor/status",
+                    "internalTopic": "Status:Instrument:Qsm#.*:ISYM._Common.Proto.V1.CommonRepeatLeakSensorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/pressurelimit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmPressureLimit",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmPressureLimit",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/primarypressure",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmPrimaryPressure",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/pumpcyclesetting",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmPumpCycleSetting",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmPumpCycleSetting",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/reboot",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.Cpu3kCommon.Proto.V1.RebootType",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/systempressure",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmSystemPressure",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/usagecounter",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounter",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/usagecounter/all",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounterList",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/usagecounter/limit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/usagecounter/limit/default",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/usagecounter/mobilephaseliters",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.UsageCounter",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/usagecounter/reset",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.SelectCounter",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/ventvalve",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmMetaVentValve",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement.Qsm.Proto.V1.QsmVentValveR",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "QsmHandler",
+            "endpoint": "/solventmanagement/qsm/ventvalve/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/about",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaSystemInfo",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/acquisition/inject",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemInject",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemInjectionDetails",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/acquisition/inject/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/acquisition/method",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaMethod",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaAcquisitionMethod",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/acquisition/method/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "GwyHandler",
+            "endpoint": "/system/ambienttemperature",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Accessory.Gwy.Proto.V1.GwyAmbientTemperature",
+                    "publicTopic": "/system/ambienttemperature",
+                    "internalTopic": "Status:Instrument:Gwy#.*:AmbientTemperatureStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "AuthenticationHandler",
+            "endpoint": "/system/auth/sessions",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM._Common.Proto.V1.SessionCredentials",
+                    "nbPayload": "ISYM._Common.Proto.V1.Session",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "DELETE",
+                    "sbPayload": "ISYM._Common.Proto.V1.Session",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/dynamicleak",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemLeakTest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/dynamicleak/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/dynamicleak/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemLeakTestResult",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/dynamicleak/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/routine/dynamicleak/status",
+                    "internalTopic": "Status:Activity:SystemLeakTest:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/dynamicleak/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemLeakTest",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/meteringpumpleak",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMeteringPumpLeakTest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/meteringpumpleak/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/meteringpumpleak/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Behavior.Proto.V1.FtnFluidicLeakTestResult",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/meteringpumpleak/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/routine/meteringpumpleak/status",
+                    "internalTopic": "Status:Activity:SystemMeteringPumpLeakTest:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/meteringpumpleak/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMeteringPumpLeakTest",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/needlesealreadiness",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement._Solv_Common.Proto.V1.SolvFlowRateAndCompositionW",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/needlesealreadiness/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/needlesealreadiness/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaNeedleSealReadinessResult",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/needlesealreadiness/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/routine/needlesealreadiness/status",
+                    "internalTopic": "Status:Activity:SystemNeedleSealReadiness:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/needlesealreadiness/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement._Solv_Common.Proto.V1.SolvFlowRateAndCompositionW",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/noisedrift",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Detection.Tuv.Behavior.Proto.V1.SystemTuvNoiseAndDrift",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/noisedrift/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/noisedrift/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Behavior.Proto.V1.SystemTuvNoiseAndDriftResult",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/noisedrift/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/routine/noisedrift/status",
+                    "internalTopic": "Status:Activity:SystemTuvNoiseAndDrift:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/noisedrift/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Behavior.Proto.V1.SystemTuvNoiseAndDrift",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceflowcell",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceflowcell/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceflowcell/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/routine/replaceflowcell/status",
+                    "internalTopic": "Status:Activity:SystemTuvReplaceFlowCell:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceflowcellcompleted",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.Detection.Tuv.Behavior.Proto.V1.SystemTuvReplaceFlowCellCompleted",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceflowcellcompleted/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceflowcellcompleted/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/routine/replaceflowcellcompleted/status",
+                    "internalTopic": "Status:Activity:SystemTuvReplaceFlowCellCompleted:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceflowcellcompleted/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Behavior.Proto.V1.SystemTuvReplaceFlowCellCompleted",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceneedleend",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.SolventManagement._Solv_Common.Proto.V1.SolvFlowRateAndCompositionW",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceneedleend/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceneedleend/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.SolventManagement._Solv_Common.Proto.V1.SolvFlowRateAndCompositionW",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceneedleinit",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceneedleinit/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceseal",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/replaceseal/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/scanplate",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemScanPlate",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/scanplate/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.PlateBarcode",
+                    "nbPayload": "no result",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/routine/scanplate/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/scanwavelengths/blankscan",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaScanWavelengths",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/scanwavelengths/blankscan/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/scanwavelengths/blankscan/status",
+                    "internalTopic": "Status:Activity:TuvBlankScan:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/scanwavelengths/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/scanwavelengths/result",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Detection.Tuv.Proto.V1.TuvScanWavelengthsPeakList",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/scanwavelengths/samplescan",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaScanWavelengths",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/scanwavelengths/samplescan/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/scanwavelengths/samplescan/status",
+                    "internalTopic": "Status:Activity:TuvSampleScan:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/scanwavelengths/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/scanwavelengths/status",
+                    "internalTopic": "Status:Activity:SystemScanWavelengths:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/scanwavelengths/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaScanWavelengths",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/primefluidics",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemPrimeFluidics",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/primefluidics/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/primefluidics/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/setup/primefluidics/status",
+                    "internalTopic": "Status:Activity:SystemPrimeFluidics:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/primefluidics/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemPrimeFluidics",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/shutdown",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/shutdown/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/shutdown/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/setup/shutdown/status",
+                    "internalTopic": "Status:Activity:SystemShutdown:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/shutdown/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/shutdownbasic",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Setup.Proto.V1.SystemMetaShutdownBasicMethod",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/shutdownbasic/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/shutdownbasic/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/setup/shutdownbasic/status",
+                    "internalTopic": "Status:Activity:SystemShutdownBasic:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/shutdownbasic/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Setup.Proto.V1.SystemMetaShutdownBasicMethod",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/startup",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemStartup",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/startup/initiate",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.InitiateBehaviorRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/startup/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "/system/behavior/setup/startup/status",
+                    "internalTopic": "Status:Activity:SystemStartup:ISYM.System.Behavior.Proto.V1.BehaviorStatus:"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/behavior/setup/startup/store",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemStartup",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "DeviceCatalogHandler",
+            "endpoint": "/system/catalog/platebarcode",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.PlateBarcode",
+                    "nbPayload": "ISYM.SampleManagement.Ftn.Proto.V1.FtnRepeatPlateConfiguration",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/columnhistory",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/command/emergencystop",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/command/initialize",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/command/initialize/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.BehaviorStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/command/reset",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/command/stop",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/configuration",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaConfiguration",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "DiagChannelHandler",
+            "endpoint": "/system/data",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.ChannelSubscription",
+                    "nbPayload": "ISYM.Client.Proto.V1.PlotControlData",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "DiagChannelHandler",
+            "endpoint": "/system/data/channels",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.ChannelConfiguration",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "EventSubscriptionHandler",
+            "endpoint": "/system/data/events",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Client.Proto.V1.EventMap",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/doors",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaReport",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/flatconfiguration",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaFlatConfiguration",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                },
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaMutableFlatConfiguration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "HealthHandler",
+            "endpoint": "/system/health/clearall",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "HealthHandler",
+            "endpoint": "/system/health/clearbyid",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonMetaHealthIssueRequest",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonMetaHealthIssue",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "HealthHandler",
+            "endpoint": "/system/health/issuebyid",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonMetaHealthIssueRequest",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonMetaHealthIssue",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "HealthHandler",
+            "endpoint": "/system/health/issues",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonMetaHealthIssues",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/identification/start",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemIdentificationDuration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/identification/state",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemIdentificationState",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/identification/stop",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/leaksensors/configuration",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.LeakSensorsConfiguration",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/leaksensors/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "EventLoggerHandler",
+            "endpoint": "/system/logs/event/entries",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonMetaEventLogEntriesRequest",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonMetaEventLogEntries",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "EventLoggerHandler",
+            "endpoint": "/system/logs/event/entry",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonMetaEventLogEntryRequest",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonMetaEventLogEntry",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonMetaEventAuditDetails",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "EventLoggerHandler",
+            "endpoint": "/system/logs/event/lastprocessedevent",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonMetaEvent",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                },
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonMetaEvent",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/solvent/bottleconfig",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaSolventBottles",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaSolventBottles",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/solvent/bottlevolume",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaSolventBottleVolumes",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaSolventBottleVolumes",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/state",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.SystemState",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/status",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM._Common.Proto.V1.SystemMetaSystemStatus",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/statusdetail",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaStatusDetail",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SettingsStorageHandler",
+            "endpoint": "/system/store/setting",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonMetaSetting",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM._Common.Proto.V1.CommonMetaSettingRequest",
+                    "nbPayload": "ISYM._Common.Proto.V1.CommonMetaSetting",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        },
+        {
+            "requestHandler": "DiagChannelHandler",
+            "endpoint": "/system/subscriptions/channels",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.ChannelSubscription",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.ChannelSubscription",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "DELETE",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.ChannelSubscription",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.ChannelSubscription",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.ChannelSubscription",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "EventSubscriptionHandler",
+            "endpoint": "/system/subscriptions/events",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.Client.Proto.V1.EventSubscription",
+                    "nbPayload": "ISYM.Client.Proto.V1.EventSubscription",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "DELETE",
+                    "sbPayload": "ISYM.Client.Proto.V1.EventSubscription",
+                    "nbPayload": "ISYM.Client.Proto.V1.EventSubscription",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.Client.Proto.V1.EventSubscription",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/test",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/usagecounter/all",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/workflow",
+            "requests": [
+                {
+                    "verb": "POST",
+                    "sbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaBeginWorkflowRequest",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "DELETE",
+                    "sbPayload": "ERROR",
+                    "nbPayload": "ERROR",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                },
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaWorkflowRecord",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/workflow/all",
+            "requests": [
+                {
+                    "verb": "GET",
+                    "sbPayload": "",
+                    "nbPayload": "ISYM.System.Behavior.Proto.V1.SystemMetaWorkflowRecordList",
+                    "publicTopic": "No Topic",
+                    "internalTopic": "No Topic"
+                }
+            ]
+        },
+        {
+            "requestHandler": "SystemManagerHandler",
+            "endpoint": "/system/workflow/processedbyclient",
+            "requests": [
+                {
+                    "verb": "PUT",
+                    "sbPayload": "No Payload",
+                    "nbPayload": "",
+                    "publicTopic": "",
+                    "internalTopic": ""
+                }
+            ]
+        }
+    ]
+}

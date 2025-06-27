@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <version_control service="PiperCoreVCS">
+        <config name="project">{settings.app_name}</config>
+        <config name="branch">{settings.branch}</config>
+        <config name="SuperSha">{consumer.app_commit}</config>
+    </version_control>
+    <consumer_variables>
+        <consumer_variable name="extra_arguments"> </consumer_variable>
+    </consumer_variables>
+    <config>
+        <run>
+            <stage id="1" name="IntegrationTest">
+                <execute_what id="1">presetup</execute_what>
+                <execute_what id="2">integration_test</execute_what>
+            </stage>
+        </run>
+    </config>
+    <load>
+        <details stage="IntegrationTest" name="presetup">
+            <execute type="runCmd">cd "{settings.path.git_home}" &amp;&amp; python3 -m venv venv &amp;&amp; . ./venv/bin/activate &amp;&amp; python3 -m pip install --upgrade pip &amp;&amp; python -m pip install -r requirements/atom_runner.txt</execute>
+        </details>
+        <details stage="IntegrationTest" name="integration_test">
+            <execute type="runCmd">cd "{settings.path.git_home}" &amp;&amp; . ./venv/bin/activate &amp;&amp; python atom.py --host_atom_folder={consumer.host_atom_folder} --host={consumer.host} --host_username=user --host_password=waters --ics_version={consumer.ics_version} --environment=CDS --test_filter="{consumer.test_filter}" --timeout={consumer.timeout} {consumer.extra_arguments} --delete</execute>
+        </details>
+    </load>
+</data>

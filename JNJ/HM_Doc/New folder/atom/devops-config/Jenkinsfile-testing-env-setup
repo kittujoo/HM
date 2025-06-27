@@ -1,0 +1,113 @@
+#!/usr/bin/env groovy _
+
+@NonCPS
+def setJobDescription(String description) {
+    currentBuild.description = description
+}
+
+pipeline {
+    agent {
+        node {
+            label 'ubuntu'
+            customWorkspace "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/${env.BUILD_NUMBER}"
+        }
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '15'))
+        skipDefaultCheckout true
+        timeout(time: 5, unit: 'HOURS')
+        timestamps()
+    }
+    parameters {
+        string defaultValue: '', description: 'Enter the IP of the Empower machine. Works with VMs managed by ATOM team ONLY.', name: 'EMPOWER_HOST', trim: true
+        string defaultValue: '', description: 'Enter the version of the ICS driver to be installed (e.g.: 1.2.0-Eval.5202 or "latest")', name: 'ICS_VERSION', trim: true
+        booleanParam name: 'ENABLE_DEV_MODE', defaultValue: true, description: 'Enables development mode on Empower vm'
+        string defaultValue: '', description: 'Enter the version of the swu file to be installed (e.g.: 1.2.0-Eval.10 or "latest") on the real system connected to EMPOWER_HOST', name: 'SYSTEM_SWU_VERSION', trim: true
+    }
+    environment {
+        EMPOWER_HOST_USERNAME = "user"
+        EMPOWER_HOST_PASSWORD = "waters"
+    }
+    stages {
+        stage('Check for fail fast') {
+            steps {
+                script {
+                    setJobDescription("<html><ul><li>Empower VM IP ${params.EMPOWER_HOST}</li><li>ICS version: ${params.ICS_VERSION}</li><li>System swu version: ${params.SYSTEM_SWU_VERSION}</li></ul></html>")
+                    if (BUILD_NUMBER == '1')
+                        error('Aborting the first build, due to auto propagated parameters')
+                    if (!params.EMPOWER_HOST)
+                        error("EMPOWER_HOST is a mandatory parameter, but it wasn't provided")
+                    if (!params.ICS_VERSION && !params.SYSTEM_SWU_VERSION)
+                        error("ICS_VERSION or SYSTEM_SWU_VERSION should be provided, but were empty")
+                }
+            }
+        }
+        stage('Checkout repositories') {
+            steps {
+                dir('atom') {
+                    checkout scm
+                }
+            }
+        }
+        stage('Install atom dependencies') {
+            steps {
+                //
+                dir('atom') {
+                    sh label: "Install required linux libraries", script: "sudo apt-get update && sudo apt-get --fix-broken install -y && sudo apt-get install -y python3-pip python3-dev python3.8-venv"
+                    sh label: 'Install pip dependencies', script: "python3 -m venv venv && . ./venv/bin/activate && pip install -r requirements/atom_runner.txt"
+                }
+            }
+        }
+        stage('Install ICS driver') {
+            when {
+                expression { params.ICS_VERSION != null && params.ICS_VERSION != '' }
+            }
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE', message: "ICS driver failed.") {
+                    dir('atom') {
+                        sh label: 'Install ICS driver', returnStdout: false, script: """
+                           . ./venv/bin/activate && python3 atom.py --host=$params.EMPOWER_HOST --ics_version=$params.ICS_VERSION --host_username=$env.EMPOWER_HOST_USERNAME --host_password=$env.EMPOWER_HOST_PASSWORD --jfrog_token=$env.JFROG_KEY
+                        """
+                    }
+                }
+            }
+        }
+        stage('Install system swu') {
+            when {
+                expression { params.SYSTEM_SWU_VERSION != null && params.SYSTEM_SWU_VERSION != '' }
+            }
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE', message: "System swu installation failed.") {
+                    dir('atom') {
+                        sh label: 'Install system swu', returnStdout: false, script: """
+                           . ./venv/bin/activate && python3 atom.py --host=$params.EMPOWER_HOST --system_swu_version=$params.SYSTEM_SWU_VERSION --host_username=$env.EMPOWER_HOST_USERNAME --host_password=$env.EMPOWER_HOST_PASSWORD --jfrog_token=$env.JFROG_KEY
+                        """
+                    }
+                }
+            }
+        }
+        stage('Enable development mode') {
+            when {
+                expression { params.ENABLE_DEV_MODE == true }
+            }
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE', message: "Development mode enabling failed") {
+                    dir('atom') {
+                        sh label: 'Enable development mode', returnStdout: false, script: """
+                           . ./venv/bin/activate && python3 atom.py --host=$params.EMPOWER_HOST --host_username=$env.EMPOWER_HOST_USERNAME --host_password=$env.EMPOWER_HOST_PASSWORD --enable_dev_mode
+                        """
+                    }
+                }
+            }
+        }
+    }
+    post {
+        // Clean after build
+        always {
+            script {
+                archiveArtifacts artifacts: 'atom/results/**/*', excludes: 'atom/results/allure-results/**/*', fingerprint: true
+                cleanWs()
+            }
+        }
+    }
+}

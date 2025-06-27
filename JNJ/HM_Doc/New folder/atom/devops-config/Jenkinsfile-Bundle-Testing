@@ -1,0 +1,166 @@
+#!/usr/bin/env groovy _
+
+@NonCPS
+def setJobDescription(String description) {
+    currentBuild.description = description
+}
+
+def runJobAndGetResults(String jobName, List parameters, failIfNotSuccess = true) {
+    def jobBuild = build(job: jobName,
+            parameters: parameters,
+            propagate: false)
+
+    def jobResult = jobBuild.getResult()
+
+    if (failIfNotSuccess && (jobResult != 'SUCCESS')) {
+        println("Build id: " + jobBuild.getId())
+        println("CurrentResult: " + jobBuild.getCurrentResult())
+        println("Number: " + jobBuild.getNumber())
+        println("FullDisplayName: " + jobBuild.getFullDisplayName())
+        println("FullProjectName: " + jobBuild.getFullProjectName())
+        message = "Job [$jobName] was unsuccessfull\n" +
+                "Parameters:\n${parameters.join('\n')}"
+        error("Test execution on real env 1 failed with result: $jobResult")
+    }
+}
+
+pipeline {
+    agent {
+        node {
+            label 'ubuntu'
+            customWorkspace "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/${env.BUILD_NUMBER}"
+        }
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '15'))
+        skipDefaultCheckout true
+        timeout(time: 20, unit: 'HOURS')
+    }
+    parameters {
+        separator(name: "BUNDLE_INFO", sectionHeader: "Bundle info")
+        string defaultValue: '', description: 'Enter the version of the ICS driver to be installed (e.g.: 1.2.0-Eval.5202 or "latest")', name: 'ICS_VERSION', trim: true
+        string defaultValue: '', description: 'Enter the version of the swu file to be installed (e.g.: 1.2.0-Eval.10 or "latest") on the real system connected to EMPOWER_HOST', name: 'SYSTEM_SWU_VERSION', trim: true
+        separator(name: "REAL_ENV_1_PARAMETERS", sectionHeader: "Real env 1 parameters")
+        string defaultValue: '', description: 'Enter the IP of the Empower machine with real instrument connected. Works with VMs managed by ATOM team ONLY.', name: 'EMPOWER_HOST_REAL_1', trim: true
+        string defaultValue: 'kiosk_access', description: "tag of the test(s) you want to run - Please note, this pipeline doesn't do any validation on this string.", name: 'TEST_FILTER_REAL_1', trim: true
+        separator(name: "REAL_ENV_2_PARAMETERS", sectionHeader: "Real env 2 parameters")
+        string defaultValue: '', description: 'Enter the IP of the Empower machine with real instrument connected. Works with VMs managed by ATOM team ONLY.', name: 'EMPOWER_HOST_REAL_2', trim: true
+        string defaultValue: 'kiosk_access', description: "tag of the test(s) you want to run - Please note, this pipeline doesn't do any validation on this string.", name: 'TEST_FILTER_REAL_2', trim: true
+    }
+    stages {
+        stage('Check for fail fast') {
+            steps {
+                script {
+                    setJobDescription("""<html>
+                                            <ul>
+                                                <li style="list-style-type: none"> Bundle info:</li>
+                                                <li>ICS version: ${params.ICS_VERSION}</li>
+                                                <li>System swu version: ${params.SYSTEM_SWU_VERSION}</li>
+                                            </ul>
+                                            <ul>
+                                                <li style="list-style-type: none">Real env 1:</li>
+                                                <li>Real env 1 IP: ${params.EMPOWER_HOST_REAL_1}</li>
+                                                <li>Real env 1 test filter: ${params.TEST_FILTER_REAL_1}</li>
+                                            </ul>
+                                            <ul>
+                                                <li style="list-style-type: none">Real env 2:</li>
+                                                <li>Real env 1 IP: ${params.EMPOWER_HOST_REAL_2}</li>
+                                                <li>Real env 1 test filter: ${params.TEST_FILTER_REAL_2}</li>
+                                            </ul>
+                                        </html>""".split('\n').collect { it.trim() }.join(''))
+                    if (BUILD_NUMBER == '1')
+                        error('Aborting the first build, due to auto propagated parameters')
+                    if (!params.ICS_VERSION && !params.SYSTEM_SWU_VERSION)
+                        error("ICS_VERSION or SYSTEM_SWU_VERSION should be provided, but were empty")
+                    if (!params.EMPOWER_HOST_REAL_1 && !params.EMPOWER_HOST_REAL_2)
+                        error("One of [EMPOWER_HOST_REAL_1, EMPOWER_HOST_REAL_2] should be provided")
+                    if (params.EMPOWER_HOST_REAL_1 && !params.TEST_FILTER_REAL_1)
+                        error("TEST_FILTER_REAL_1 is a mandatory parameter when EMPOWER_HOST_REAL_1 was set")
+                    if (params.EMPOWER_HOST_REAL_2 && !params.TEST_FILTER_REAL_2)
+                        error("TEST_FILTER_REAL_2 is a mandatory parameter when EMPOWER_HOST_REAL_2 was set")
+                }
+            }
+        }
+        stage('Execute Testing in Parallel') {
+            parallel {
+                stage('Run testing flow on real env 1') {
+                    when { expression { params.EMPOWER_HOST_REAL_1 } }
+                    stages {
+                        stage("Install swu and ics driver on real env 1") {
+                            steps {
+                                script {
+                                    def results = runJobAndGetResults("Atom-Testing-Environment-Setup/${env.BRANCH_NAME}",
+                                            [
+                                                    string(name: 'EMPOWER_HOST', value: params.EMPOWER_HOST_REAL_1),
+                                                    string(name: 'ICS_VERSION', value: params.ICS_VERSION),
+                                                    booleanParam(name: 'ENABLE_DEV_MODE', value: true),
+                                                    string(name: 'SYSTEM_SWU_VERSION', value: params.SYSTEM_SWU_VERSION)
+                                            ]
+                                    )
+                                }
+                            }
+                        }
+                        stage("Run tests on real env 1") {
+                            steps {
+                                script {
+                                    def results = runJobAndGetResults("Atom-Pipeline-Instrument-OnDemand/${env.BRANCH_NAME}",
+                                            [
+                                                    string(name: 'JUMP_SERVER', value: params.EMPOWER_HOST_REAL_1),
+                                                    string(name: 'TEST_FILTER', value: params.TEST_FILTER_REAL_1),
+//                                                    string(name: 'DOCKER_IMAGE_NAME', value: 'atom:1.1.0-1-2-0-develop.1'),
+//                                                    string(name: 'SYSTEM_NAME', value: ''),
+//                                                    string(name: 'JUMP_SERVER_USERNAME', value: 'user'),
+//                                                    string(name: 'JUMP_SERVER_PASSWORD', value: 'waters'),
+//                                                    string(name: 'TIMEOUT', value: '57600')
+                                            ]
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+                stage('Run testing flow on real env 2') {
+                    when { expression { params.EMPOWER_HOST_REAL_2 } }
+                    stages {
+                        stage("Install swu and ics driver on real env 2") {
+                            steps {
+                                script {
+                                    def results = runJobAndGetResults("Atom-Testing-Environment-Setup/${env.BRANCH_NAME}",
+                                            [
+                                                    string(name: 'EMPOWER_HOST', value: params.EMPOWER_HOST_REAL_2),
+                                                    string(name: 'ICS_VERSION', value: params.ICS_VERSION),
+                                                    booleanParam(name: 'ENABLE_DEV_MODE', value: true),
+                                                    string(name: 'SYSTEM_SWU_VERSION', value: params.SYSTEM_SWU_VERSION)
+                                            ]
+                                    )
+                                }
+                            }
+                        }
+                        stage("Run tests on real env 2") {
+                            steps {
+                                script {
+                                    def results = runJobAndGetResults("Atom-Pipeline-Instrument-OnDemand/${env.BRANCH_NAME}",
+                                            [
+                                                    string(name: 'JUMP_SERVER', value: params.EMPOWER_HOST_REAL_2),
+                                                    string(name: 'TEST_FILTER', value: params.TEST_FILTER_REAL_2),
+                                            ]
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    post {
+        // Clean after build
+        always {
+            script {
+//                archiveArtifacts artifacts: 'atom/results/**/*', excludes: 'atom/results/allure-results/**/*', fingerprint: true
+                cleanWs()
+            }
+        }
+    }
+}

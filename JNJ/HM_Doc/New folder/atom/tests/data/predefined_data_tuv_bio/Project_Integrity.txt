@@ -1,0 +1,13 @@
+Waters Project Integrity Report
+
+Database ID: 2442521066
+Project Name: predefined_data_tuv_bio
+
+Test: Checking for database schema export files
+  Result: Successfully verified CRC of export file predefined_data_tuv_bio_INF.CKS
+  Result: Successfully verified CRC of export file predefined_data_tuv_bio_EXP.CKS
+Test: Fetching list of channels in project
+  Result: No channels found in this project
+
+
+***** Project Integrity Test for Project: "predefined_data_tuv_bio" Completed with NO Failures *****

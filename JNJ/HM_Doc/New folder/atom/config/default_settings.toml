@@ -1,0 +1,48 @@
+[DEFAULT]
+host = "localhost"
+host_username = "user"
+host_password = "waters"
+ispp_hostname = "@format {this.host}"
+ispp_username = "@format {this.host_username}"
+ispp_password = "@format {this.host_password}"
+isym_hostname = "@format {this.ispp_hostname}"
+isym_username = "@format {this.ispp_username}"
+isym_password = "@format {this.ispp_password}"
+kiosk_url = "@format http://{this.ispp_hostname}/kiosk-app/"
+isym_api_port = 8000
+ispp_api_port = 80
+isym_api_url = "@format http://{this.isym_hostname}:{this.isym_api_port}"
+ispp_api_url = "@format http://{this.ispp_hostname}:{this.ispp_api_port}"
+default_assert_timeout_in_seconds = 60
+default_assert_polling_interval_in_seconds = 0.5
+chc_hostname = "192.168.100.10"
+ftn_hostname = "192.168.100.20"
+qsm_hostname = "192.168.100.30"
+tuv_hostname = "192.168.100.40"
+empower_reg_key = "SOFTWARE\\WOW6432Node\\Waters\\Empower"
+
+[REAL]
+jump_server_username = "user"
+jump_server_password = "waters"
+ispp_hostname = "192.168.200.2"
+isym_hostname = "192.168.200.1"
+
+[SIMULATION]
+ispp_api_port = 8000
+
+[CDS]
+instrument_username = "@format {this.isym_username}"
+instrument_password = "@format {this.isym_password}"
+ics_version = ""
+isym_hostname = "192.168.200.1"
+empower_hostname = "127.0.0.1"
+empower_port = 4723
+miltest_rest_client_port = 8080
+ics_instrument_type = "Alliance iS"
+ics_installer_path = "ics-installer"
+ics_executable_name = "AllianceiS.exe"
+ics_download_url = "http://rdeidgart:8081/artifactory/orion-generic/OrionICS"
+empower_username = "system"
+empower_password = "manager"
+empower_system_name = ""
+hardware_system_name = ""

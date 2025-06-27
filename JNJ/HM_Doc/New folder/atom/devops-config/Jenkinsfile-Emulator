@@ -1,0 +1,338 @@
+#!/usr/bin/env groovy _
+
+pipeline {
+    agent {
+        node {
+            label 'ubuntu'
+            customWorkspace "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/${env.BUILD_NUMBER}"
+        }
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        skipDefaultCheckout true
+        timeout(time: 3, unit: 'HOURS')
+        timestamps()
+    }
+    parameters {
+        string name: 'EMULATOR_TEMPLATE_NAME', defaultValue: 'ATOM_AllianceiS_Ubuntu_V13', description: 'Enter the name of the emulator template to be used', trim: true
+        string name: 'ISPP_VERSION', defaultValue: 'ispp-all-0.1.0-beta5.2.deb', description: 'Enter the ISPP version to be installed on the emulator. Default value is the current working version.', trim: true
+        string name: 'ISYM_VERSION', defaultValue: 'isym-amd64-0.3.0-beta5.4_Debug.deb', description: 'Enter the ISYM version to be installed on the emulator. Default value is the current working version.', trim: true
+        booleanParam name: 'IS_CUSTOM_BUILD', defaultValue: true, description: 'Checked: Creates a custom build VM . Unchecked: Creates the "ATOM_AiS_EMU_Latest" VM template and deletes the previous one'
+        string name: 'CUSTOM_EMULATOR_NAME', defaultValue: '', description: 'Custom emulator VM name. Leave blank for default naming ex: ATOM_AiS_EMU_06_20_2023_15_32_00', trim: true
+    }
+    environment {
+        CURRENT_TIMESTAMP = new Date().format('MM_dd_yyyy_HH_mm_ss')
+        ARTIFACTORY_CREDS = credentials('cloud_jfrog_key')
+    }
+    stages {
+        stage('Check for fail fast') {
+            steps {
+                script {
+                     println """Starting CDS Pipeline using the following parameters:
+                        EMULATOR_TEMPLATE_NAME = ${params.EMULATOR_TEMPLATE_NAME}
+                        ISPP_VERSION = ${params.ISPP_VERSION}
+                        ISYM_VERSION = ${params.ISYM_VERSION}
+                        IS_CUSTOM_BUILD = ${params.IS_CUSTOM_BUILD}
+                        CUSTOM_EMULATOR_NAME = ${params.CUSTOM_EMULATOR_NAME}
+                    """
+
+                    if (!params.ISPP_VERSION) {
+                        error('ISPP_VERSION parameter is missing!')
+                    }
+
+                    if (!params.ISYM_VERSION) {
+                        error('ISYM_VERSION parameter is missing!')
+                    }
+
+                    if (!params.ISYM_VERSION?.trim().contains('amd64')) {
+                        error('ISYM_VERSION parameter is not valid! Please use the following version: isym-amd64-<version>_Debug.deb')
+                    }
+
+                    if (params.CUSTOM_EMULATOR_NAME && params.IS_CUSTOM_BUILD) {
+                        env.EMULATOR_NAME = params.CUSTOM_EMULATOR_NAME
+                        echo("Custom Alliance iS emulator template generation started. Template VM name is now ${env.EMULATOR_NAME}!")
+                        setJobDescription("<html><ul><li>Custom emulator template ${env.EMULATOR_NAME}</li><li>ISPP version ${params.ISPP_VERSION}</li><li>ISYM version ${params.ISYM_VERSION}</li></ul></html>")
+                    }
+
+                    else if (!params.CUSTOM_EMULATOR_NAME && params.IS_CUSTOM_BUILD) {
+                        env.EMULATOR_NAME = "ATOM_AiS_EMU_${env.CURRENT_TIMESTAMP}"
+                        echo("Custom Alliance iS emulator template generation started. Template VM name is now ${env.EMULATOR_NAME}!")
+                        setJobDescription("<html><ul><li>Custom emulator template ${env.EMULATOR_NAME}</li><li>ISPP version ${params.ISPP_VERSION}</li><li>ISYM version ${params.ISYM_VERSION}</li></ul></html>")
+                    }
+
+                    else {
+                        env.EMULATOR_NAME = "ATOM_AiS_EMU_Latest"
+                        echo("Latest Alliance iS emulator template generation started. Template VM name is now ${env.EMULATOR_NAME}!")
+                        setJobDescription("<html><ul><li>Custom emulator template ${env.EMULATOR_NAME}</li><li>ISPP version ${params.ISPP_VERSION}</li><li>ISYM version ${params.ISYM_VERSION}</li></ul></html>")
+                    }
+
+                    if (!params.ISPP_VERSION?.trim().endsWith('.deb')){
+                        env.ISPP_FILE = "${params.ISPP_VERSION}.deb"
+                    }
+                    else{
+                        env.ISPP_FILE = params.ISPP_VERSION
+                    }
+
+                    if (!params.ISYM_VERSION?.trim().endsWith('.deb')){
+                        env.ISYM_FILE = "${params.ISYM_VERSION}.deb"
+                    }
+                    else{
+                        env.ISYM_FILE = params.ISYM_VERSION
+                    }
+                }
+            }
+        }
+        stage('Deploy Emulator') {
+            steps {
+                script{
+                    if (params.IS_CUSTOM_BUILD == false) {
+                        echo("Deleting the latest template if it exists...")
+                        deleteVSphereVm(env.EMULATOR_NAME)
+                    }
+                    echo("Deploying the emulator...")
+                    deployVSphereVm(env.EMULATOR_NAME, params.EMULATOR_TEMPLATE_NAME)
+
+                    echo("Get the IP address of the emulator... ${env.EMULATOR_NAME}")
+                    env.EMULATOR_IP = getHostIpFromVSphere(env.EMULATOR_NAME)
+
+                    echo("Waiting for the emulator to be reachable...")
+                    timeout(time: 5, unit: 'MINUTES') {
+                        waitUntil {
+                            return pingHost(env.EMULATOR_IP)
+                        }
+                    }
+                    
+                    echo("Emulator is reachable! IP address: ${env.EMULATOR_IP}")
+
+                    echo("Adding description to the emulator...")
+                    addDescriptionToVSphereVm(env.EMULATOR_NAME,"ISPP version: ${params.ISPP_VERSION} ISYM version: ${params.ISYM_VERSION} Owner: ${env.BUILD_USER}")
+                }
+            }
+        }
+        stage('Download and install ISYM and ISPP'){
+            steps {
+                script{
+                    withCredentials([usernamePassword(credentialsId: 'user', passwordVariable: 'pass', usernameVariable: 'user')]) {      
+                        //Create a ssh connection to the emulator
+                        def remote = [:]
+                        remote.name = "emulator"
+                        remote.host = env.EMULATOR_IP
+                        remote.user = env.user
+                        remote.password = env.pass
+                        remote.allowAnyHosts = true
+
+                        //Check if SSH connection is established
+                        echo "Checking if SSH connection is established..."
+                        def sshOutput = sshCommand remote: remote, command: "ls -l"
+                        if (!sshOutput.contains("total")){
+                            error("SSH connection was not established! SSH output: ${sshOutput}")
+                        }
+                        else{
+                            echo("SSH connection was established successfully!")
+                        }
+
+                        //Download ISYM and ISPP
+                        echo "Downloading ISYM..."
+                        def isymOutput = sshCommand remote: remote, command: "curl -L -H \"X-JFrog-Art-Api:${env.ARTIFACTORY_CREDS}\" -O \"https://waters.jfrog.io/artifactory/ics-lc-debian-virtual/isym/${env.ISYM_FILE}\""
+                        
+                        echo "Downloading ISPP..."
+                        def isppOutput = sshCommand remote: remote, command: "curl -L -H \"X-JFrog-Art-Api:${env.ARTIFACTORY_CREDS}\" -O \"https://waters.jfrog.io/artifactory/ics-lc-debian-virtual/ispp/${env.ISPP_FILE}\""
+                        
+                        def output = sshCommand remote: remote, command: "ls -l"
+                        if (!output.contains(env.ISYM_FILE)){
+                            error("ISYM was not downloaded! Curl output: ${isymOutput}")
+                        }
+                        else if (!output.contains(env.ISPP_FILE)){
+                            error("ISPP was not downloaded! Curl output: ${isppOutput}")
+                        }
+                        else{
+                            echo("ISYM and ISPP were downloaded successfully!")
+                        }
+
+                        //Wait for the downloaded files to be available
+                        sleep 5
+
+                        //Install & configure ISPP
+                        echo "Installing ISPP..."
+                        def isppInstallOutput = sshCommand remote: remote, command: "sudo dpkg -i ${env.ISPP_FILE}"
+                        if (!isppInstallOutput.contains("Starting \'ISPP\'")){
+                            error("ISPP installation was not started successfully! dpkg output: ${isppInstallOutput}")
+                        }               
+                        
+                        echo "Restarting nginx..."           
+                        def nginxRestartOutput = sshCommand remote: remote, command: "sudo systemctl restart nginx"
+                        if (nginxRestartOutput.contains("Failed")){
+                            error("Nginx was not restarted! systemctl restart output: ${nginxRestartOutput}")
+                        }
+
+                        def nginxStatusOutput = sshCommand remote: remote, command: "sudo systemctl status nginx"
+                        if (!nginxStatusOutput.contains("Active: active (running)")){
+                            error("Nginx is not running! systemctl status output: ${nginxStatusOutput}")
+                        }
+
+                        def isppGrepOutput = sshCommand remote: remote, command: "sudo dpkg --list | grep ispp"
+                        if (!isppGrepOutput.contains("ispp")){
+                            error("ISPP was not installed! dpkg --list | grep ispp output: ${isppGrepOutput}")
+                        }
+                        else{
+                            echo("ISPP was installed successfully!")
+                        }
+
+                        //Install & configure ISYM
+                        echo "Installing ISYM..."
+                        def isymInstallOutput = sshCommand remote: remote, command: "sudo dpkg -i ${env.ISYM_FILE}"
+                        if (!isymInstallOutput.contains("Setting up isym")){
+                            error("ISYM installation was not started successfully! dpkg output: ${isymInstallOutput}")
+                        }
+
+                        def isymGrepOutput = sshCommand remote: remote, command: "sudo dpkg --list | grep isym"
+                        if (!isymGrepOutput.contains("isym")){
+                            error("ISPP was not installed! dpkg --list | grep ispp output: ${isppGrepOutput}")
+                        }
+                        else{
+                            echo("ISPP was installed successfully!")
+                        }
+
+                        echo "Configuring ISYM..."
+                        def configIsymOutput = sshCommand remote: remote, command: "cd /usr/local/waters/isym/utils/scripts/ && sudo ./config-isym-emu.sh"
+                        if (!configIsymOutput.contains("Configuration complete")){
+                            error("ISYM was not configured! config-isym-emu.sh output: ${configIsymOutput}")
+                        }
+
+                        echo "Starting ISYM..."
+                        def startIsymOutput = sshCommand remote: remote, command: "cd /usr/local/waters/isym/utils/scripts/ && sudo ./start-isym-emu.sh"
+                        if (!startIsymOutput.contains("iSym started")){
+                            error("ISYM was not started! start-isym-emu.sh output: ${startIsymOutput}")
+                        }
+                    }
+                }
+            }
+        }
+        stage('Create latest template'){
+            steps {
+                script{
+                    if (!params.IS_CUSTOM_BUILD) {
+                        echo("Convert the emulator VM to template")
+                        convertVSphereVmToTemplate(env.EMULATOR_NAME)
+                    }
+                }
+            }
+
+            post {
+                always {
+                    script {
+                        cleanWs()
+                        if (!env.EMULATOR_IP || !env.EMULATOR_NAME) {
+                            echo("The emulator IP address were not set!")
+                        }
+                        else {
+                            if (params.IS_CUSTOM_BUILD){
+                                echo ("Emulator VM ready to use! EMULATOR_NAME=${env.EMULATOR_NAME} with EMULATOR_IP=${env.EMULATOR_IP}")
+                            }
+                            else{
+                                echo ("Emulator latest template ready to use! EMULATOR_NAME=${env.EMULATOR_NAME}")        
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+String getHostIpFromVSphere(String targetHost) {
+    if (targetHost == null) {
+        error("Not all needed parameters are provided for ${action} action!")
+    }
+    println("Trying to get the IP address for ${targetHost}...")
+    def output = vSphere buildStep: [$class: 'ExposeGuestInfo', envVariablePrefix: 'VSPHERE', vm: targetHost, waitForIp4: true], serverName: 'LC_ICS_VSPHERE'
+    if (!output) {
+        error("Cannot get the IP address of the VM ${targetHost}")
+    }
+    println("The IP address for ${targetHost} is ${output}")
+    return output
+}
+
+String deployVSphereVm(String vmName, String templateName = '', String vSpherePath = 'DevOps/ATOM/AiS_EMU_Pipeline', String powerOnValue = 'True', int timeoutInSecondsValue = 360) {
+    if (!vmName || !templateName) {
+        error("You should provide both host name and template name to deploy VM")
+    }
+    println("Trying to deploy VM ${vmName} from template ${templateName}...")
+    def output = vSphere buildStep: [$class: 'Deploy', template: templateName, clone: vmName, folder: vSpherePath, powerOn: powerOnValue, timeoutInSeconds: timeoutInSecondsValue, resourcePool: 'Default'], serverName: 'LC_ICS_VSPHERE'
+    println("VM was deployed successfully! VSphere path: ${vSpherePath}/${templateName}")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+String connectVSphereVmToPort(String targetHost, String port) {
+    if (!targetHost || !port) {
+        error("Vm name and port are mandatory arguments for attaching vm to port")
+    }
+
+    println("Trying to connect ${targetHost} to port ${port}...")
+    def output = vSphere buildStep: [$class: 'Reconfigure', vm: targetHost, reconfigureSteps: [[$class: "ReconfigureNetworkAdapters", deviceAction: "EDIT", deviceLabel: "Network adapter 2", standardSwitch: false, macAddress: "", portGroup: "", distributedSwitch: true, distributedPortGroup: port, distributedPortId: ""]]], serverName: 'LC_ICS_VSPHERE'
+    println("VM was connected successfully to port ${port}!")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+String disconnectVSphereVmCustomPorts(String targetHost) {
+    if (!targetHost) {
+        error("targetHost is mandatory for port removing")
+    }
+    println("Trying to disconnect ${targetHost} from current port...")
+    def output = vSphere buildStep: [$class: 'Reconfigure', vm: targetHost, reconfigureSteps: [[$class: "ReconfigureNetworkAdapters", deviceAction: "EDIT", deviceLabel: "Network adapter 2", standardSwitch: false, macAddress: "", portGroup: "", distributedSwitch: true, distributedPortGroup: "NoLanAccess", distributedPortId: ""]]], serverName: 'LC_ICS_VSPHERE'
+    println("VM was disconnected successfully from the current port!")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+String deleteVSphereVm(String targetHost, boolean failOnNoExistValue = false) {
+    if (!targetHost) {
+        error("targetHost is mandatory for vm deletion")
+    }
+    println("Trying to delete ${targetHost} VM...")
+    def output = vSphere buildStep: [$class: 'Delete', vm: targetHost, failOnNoExist: failOnNoExistValue], serverName: 'LC_ICS_VSPHERE'
+    println("VM ${targetHost} was deleted successfully!")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+String convertVSphereVmToTemplate(String targetHost) {
+    if (!targetHost) {
+        error("targetHost is mandatory for vm conversion")
+    }
+    println("Trying to convert to template ${targetHost} VM...")
+    def output = vSphere buildStep: [$class: 'ConvertToTemplate', vm: targetHost, force: true], serverName: 'LC_ICS_VSPHERE'
+    println("VM ${targetHost} was successfully converted to template!")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+String addDescriptionToVSphereVm(String targetHost, String description) {
+    if (!targetHost) {
+        error("targetHost is mandatory to add a description to vm")
+    }
+    println("Trying to add description to ${targetHost} VM...")
+    def output = vSphere buildStep: [$class: 'Reconfigure', vm: targetHost, reconfigureSteps: [[$class: "ReconfigureAnnotation", annotation: description, append: true]]], serverName: 'LC_ICS_VSPHERE'
+    println("Description was successfully added to ${targetHost}!")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+boolean pingHost(String host_ip) {
+    println("Checking if the IP address ${host_ip} is reachable")
+    def isReachable
+
+    if (isUnix()) {
+        isReachable = sh(script: "ping -c 1 ${host_ip}", returnStatus: true) == 0
+    } else {
+        isReachable = bat(script: "ping -n 1 ${host_ip}", returnStatus: true) == 0
+    }
+    println("The IP address ${host_ip} is ${isReachable ? "" : "not "}reachable")
+    return isReachable
+}
+
+def setJobDescription(String description) {
+    currentBuild.description = description
+}

@@ -1,0 +1,316 @@
+#!/usr/bin/env groovy _
+
+pipeline {
+    agent {
+        node {
+            label 'ubuntu'
+            customWorkspace "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/${env.BUILD_NUMBER}"
+        }
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        skipDefaultCheckout true
+        timeout(time: 17, unit: 'HOURS')
+        timestamps()
+    }
+    parameters {
+        string name: 'TEMPLATE_NAME', defaultValue: '', description: "Enter the name of the template to clone. (Ex. ATOM_W10_21H2_E38) Leave it blank if you already have an existing VM (use EXISTING_TARGET_HOST).", trim: true
+        booleanParam name: 'KEEP_DEPLOYED_VM', defaultValue: false, description: "Check this box if you want to keep the deployed VM after deployment. Not applicable if you use an existing VM (EXISTING_TARGET_HOST)."
+        string name: 'EXISTING_TARGET_HOST', defaultValue: '', description: "Enter the name of the already deployed VM. Leave it blank if you Deploy a new VM. This machine cannot be deleted by this pipeline.", trim: true
+        string name: 'TARGET_PORT', defaultValue: '', description: "Enter the name of the PVLAN/EVLAN port. If VM is deployed and KEEP_DEPLOYED_VM are requested, your VM will be disconnected from the given port after test run! Leave blank if you don't need a port connection.", trim: true
+        string name: 'ICS_VERSION_TO_DOWNLOAD', defaultValue: 'undefined', description: "Enter the ICS (driver) version.", trim: true
+        string name: 'TEST_FILTER', defaultValue: '', description: "Enter the tag of the test(s) you want to run - Please note, this pipeline doesn't do any validation on this string.", trim: true
+        booleanParam name: 'USE_DEPLOYED_EMULATOR', defaultValue: false, description: "Check this box if you want to use the default \'ATOM_AiS_EMU_Latest\' emulator template or use the CUSTOM_ISYM_VERSION and CUSTOM_ISPP_VERSION to deploy a custom emulator."
+        string name: 'EMULATOR_ISPP_VERSION', defaultValue: '', description: "If USE_DEPLOYED_EMULATOR is requested, EMULATOR_ISPP_VERSION will be used to deploy a new emulator. Leave it empty otherwise.", trim: true
+        string name: 'EMULATOR_ISYM_VERSION', defaultValue: '', description: "If USE_DEPLOYED_EMULATOR is requested, EMULATOR_ISYM_VERSION will be used to deploy a new emulator. Leave it empty otherwise.", trim: true
+        string name: 'TIMEOUT', defaultValue: '57600', description: "Maximum test execution time in seconds after which test execution will be forcibly stopped and marked as failed", trim: true
+    }
+
+    environment {
+        CURRENT_TIMESTAMP = new Date().format('MM_dd_yyyy_HH_mm_ss')
+        BITBUCKET_CREDS = credentials('codeta03-readonly')
+        DEFAULT_VM_NAME = "ATOM_${env.CURRENT_TIMESTAMP}_CDS_${env.BUILD_NUMBER}"
+        CUSTOM_EMULATOR_NAME = "ATOM_AiS_EMU_${env.CURRENT_TIMESTAMP}_CDS_${env.BUILD_NUMBER}"
+        GENERATED_FOLDER_NAME = "${env.DEFAULT_VM_NAME}"
+    }
+
+    stages {
+        stage('Check for fail fast') {
+            steps {
+                script {
+                    if (BUILD_NUMBER == '1') {
+                        error('Aborting the first build, due to auto propagated parameters')
+                    }
+
+                    if (params.TEMPLATE_NAME && params.EXISTING_TARGET_HOST) {
+                        error("You can't use both TEMPLATE_NAME and EXISTING_TARGET_HOST parameters!")
+                    }
+
+                    if (!params.TEMPLATE_NAME && !params.EXISTING_TARGET_HOST) {
+                        error("You must use at least one of the following parameters: TEMPLATE_NAME or EXISTING_TARGET_HOST!")
+                    }
+
+                    if (params.TARGET_PORT && !(params.TARGET_PORT ==~ /^(PVLAN|EVLAN)_\d{1,3}$/)) {
+                        error("The port ${params.TARGET_PORT} has an invalid format! Please use the following format: 'PVLAN_000' or 'EVLAN_000'")
+                    }
+
+                    if (params.USE_DEPLOYED_EMULATOR && !params.TARGET_PORT){
+                        error("You can't USE_DEPLOYED_EMULATOR without a TARGET_PORT provided!")
+                    }
+
+                    if (params.USE_DEPLOYED_EMULATOR && (!params.EMULATOR_ISYM_VERSION || !params.EMULATOR_ISPP_VERSION)) {
+                        error("EMULATOR_ISYM_VERSION and EMULATOR_ISPP_VERSION must be provided together!")
+                    }
+                    if (!params.TIMEOUT.isInteger()){
+                        error('Timeout parameter should be positive integer')
+                    }
+
+                    env.ATOM_FOLDER = env.GENERATED_FOLDER_NAME
+
+                    println """Starting CDS Pipeline using the following parameters:
+                    TEMPLATE_NAME: ${params.TEMPLATE_NAME} \n
+                    EXISTING_TARGET_HOST: ${params.EXISTING_TARGET_HOST} \n
+                    TARGET_PORT: ${params.TARGET_PORT} \n
+                    KEEP_DEPLOYED_VM: ${params.KEEP_DEPLOYED_VM} \n
+                    ICS_VERSION_TO_DOWNLOAD: ${params.ICS_VERSION_TO_DOWNLOAD} \n
+                    TEST_FILTER: ${params.TEST_FILTER} \n
+                    ATOM_FOLDER: ${params.ATOM_FOLDER} \n
+                    BUILD_NUMBER: ${BUILD_NUMBER} \n
+                    DEFAULT_VM_NAME: ${DEFAULT_VM_NAME} \n
+                    USE_DEPLOYED_EMULATOR: ${params.USE_DEPLOYED_EMULATOR} \n
+                    EMULATOR_ISYM_VERSION: ${params.EMULATOR_ISYM_VERSION} \n
+                    EMULATOR_ISPP_VERSION: ${params.EMULATOR_ISPP_VERSION} \n
+                    """
+                }
+            }
+        }
+        stage('Deploy VM') {
+            steps {
+                script {
+                    if (params.TEMPLATE_NAME) {
+                        deployVSphereVm(env.DEFAULT_VM_NAME, params.TEMPLATE_NAME)
+                        println("Adding description to the VM...")
+                        addDescriptionToVSphereVm(env.DEFAULT_VM_NAME,"ATOM CDS pipeline deployment. Owner: ${env.BUILD_USER}")
+                    } else {
+                        println("No VM deployment requested. Using the existing VM ${params.EXISTING_TARGET_HOST}...")
+                    }
+                }
+            }
+        }
+        stage('Deploy emulator and connect it to the target port'){
+            steps{
+                script{
+                    if (params.USE_DEPLOYED_EMULATOR) {
+                        if(params.EMULATOR_ISYM_VERSION && params.EMULATOR_ISPP_VERSION){
+                            println ("Deploying custom emulator with ISYM version ${params.EMULATOR_ISYM_VERSION} and ISPP version ${params.EMULATOR_ISPP_VERSION}...")
+                            def secondaryBuild = build job: 'Atom-Pipeline-Emulator', parameters: [
+                            string(name: 'ISPP_VERSION', value: params.EMULATOR_ISPP_VERSION),
+                            string(name: 'ISYM_VERSION', value: params.EMULATOR_ISYM_VERSION),
+                            booleanParam(name: 'IS_CUSTOM_BUILD', value: true),
+                            string(name: 'CUSTOM_EMULATOR_NAME', value: env.CUSTOM_EMULATOR_NAME)], wait: true
+                            if (secondaryBuild.result == 'SUCCESS') {
+                                println("Emulator was deployed successfully!")
+                                println("Trying to connect ${env.CUSTOM_EMULATOR_NAME} to port ${params.TARGET_PORT}...")
+                                connectVSphereVmToPort(env.CUSTOM_EMULATOR_NAME, params.TARGET_PORT)
+                                println("Emulator was connected successfully to port ${params.TARGET_PORT}!")
+                            }
+                            else {
+                                error("Emulator deployment failed!")
+                            }
+                        }
+                        else {
+                            println("Deploying version 'latest' of emulator...")
+                            deployVSphereVm(env.CUSTOM_EMULATOR_NAME, "ATOM_AiS_EMU_Latest")
+                            println("Emulator was deployed successfully!")
+                            connectVSphereVmToPort(env.CUSTOM_EMULATOR_NAME, params.TARGET_PORT)
+                            println("Emulator was connected successfully to port ${params.TARGET_PORT}!")
+                        }
+                    }
+                    else
+                    {
+                        println("No emulator deployment requested. Skipping...")
+                    }
+                }
+            }
+        }
+        stage('Checkout repositories') {
+            steps {
+                dir('atom') {
+                    checkout scm
+                }
+                dir("piper-runner") {
+                    git branch: "master", credentialsId: "codeta03-readonly", url: 'https://code.waters.com/bitbucket/scm/devops/piper-runner.git'
+                }
+            }
+        }
+        stage('Check for target host') {
+            steps {
+                script {
+
+                    def host = params.TEMPLATE_NAME ? env.DEFAULT_VM_NAME : params.EXISTING_TARGET_HOST
+
+                    host = (host ==~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/) ? host : getHostIpFromVSphere(host)
+
+                    if (!pingHost(host)) {
+                        error("The IP address ${host} is not reachable")
+                    }
+
+                    env.HOST_IP = host
+
+                    println("Set build description")
+                    currentBuild.description = """
+                            <div>${params.TEMPLATE_NAME ? "Template: ${params.TEMPLATE_NAME}" : "Existing VM: ${params.EXISTING_TARGET_HOST}"}</div>
+                            <div>${params.ICS_VERSION_TO_DOWNLOAD == "undefined" ? "ICS Version: ${params.ICS_VERSION_TO_DOWNLOAD}" : " "}</div>
+                            <div>${params.USE_DEPLOYED_EMULATOR ? "Emulator: ${env.CUSTOM_EMULATOR_NAME}" : " "}</div>
+                    """
+                }
+            }
+        }
+        stage('Connect to PVLAN/EVLAN port') {
+            steps {
+                script {
+                    if (params.TARGET_PORT) {
+                        def vm = params.TEMPLATE_NAME ? env.DEFAULT_VM_NAME : params.EXISTING_TARGET_HOST
+                        connectVSphereVmToPort(vm, params.TARGET_PORT)
+                    } else {
+                        println("No PVLAN/EVLAN port connection requested.")
+                    }
+                }
+            }
+        }
+        stage('IntegrationTest') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE', message: "Tests execution failed.") {
+                    script {
+                        def command = []
+                        runTests(env.ATOM_FOLDER, env.HOST_IP, env.TIMEOUT, command.join(" "))
+                    }
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'atom/results/*.*', fingerprint: true
+                    allure includeProperties: false, jdk: '', results: [[path: 'atom/results/allure-results/']]
+                    junit allowEmptyResults: true, testResults: "atom/results/pytest-results/*.*"
+                    sh "ps"
+                    sh "pkill xvfb-run"
+                }
+            }
+        }
+    }
+    post {
+        // Clean after build
+        always {
+            script {
+                cleanWs()
+                if (params.USE_DEPLOYED_EMULATOR){
+                    println("Deleting emulator ${env.CUSTOM_EMULATOR_NAME}...")
+                    deleteVSphereVm(env.CUSTOM_EMULATOR_NAME)
+                    println("Emulator was deleted successfully!")
+                }
+                if (!params.TEMPLATE_NAME) {
+                    println("VM was not deployed by this build. Keeping VM ${params.EXISTING_TARGET_HOST} and port if already connected...")
+                } else if (params.KEEP_DEPLOYED_VM) {
+                    println("VM was deployed by this build. Keeping VM ${env.DEFAULT_VM_NAME}. Port will be disconnected...")
+                    disconnectVSphereVmCustomPorts(env.DEFAULT_VM_NAME)
+                } else {
+                    println("VM was deployed by this build. Deleting VM ${env.DEFAULT_VM_NAME} because KEEP_DEPLOYED_VM was not checked.")
+                    //deleteVSphereVm(env.DEFAULT_VM_NAME)
+                }
+            }
+        }
+    }
+}
+
+def runTests(String atomFolderName, String host, String timeout, String extraArguments = null) {
+        withCredentials([usernamePassword(credentialsId: 'user', passwordVariable: 'pass', usernameVariable: 'user')]) {
+        //Running with extra arguments if provided
+        sh label: "Install required linux libraries", script: "sudo apt-get update && sudo apt-get --fix-broken install -y && sudo apt-get install -y python3-pip python3-dev python3.8-venv xvfb freerdp2-x11"
+        sh label: "Start RDP session to ${host}", script: "xvfb-run -a xfreerdp /cert-ignore /u:${env.user} /p:${env.pass} /v:${host} /size:1920x1080 > /dev/zero &"
+        sh label: 'IntegrationTest', returnStdout: false, script: """
+            python3 ./piper-runner/runner.py --project-home ./atom --config_file ./atom/devops-config/CDS/config-CDS-OnDemand.xml --consumer_variables host_atom_folder=${atomFolderName} app_commit=$env.GIT_COMMIT host=${host} ics_version=${params.ICS_VERSION_TO_DOWNLOAD} test_filter="${params.TEST_FILTER}" extra_arguments=${extraArguments} timeout=${timeout}
+            """
+        }
+    }
+
+String getHostIpFromVSphere(String targetHost) {
+    if (targetHost == null) {
+        error("Not all needed parameters are provided for ${action} action!")
+    }
+    println("Trying to get the IP address for ${targetHost}...")
+    def output = vSphere buildStep: [$class: 'ExposeGuestInfo', envVariablePrefix: 'VSPHERE', vm: targetHost, waitForIp4: true], serverName: 'LC_ICS_VSPHERE'
+    if (!output) {
+        error("Cannot get the IP address of the VM ${targetHost}")
+    }
+    println("The IP address for ${targetHost} is ${output}")
+    return output
+}
+
+String deployVSphereVm(String vmName, String templateName = '', String vSpherePath = 'DevOps/ATOM/CDS_Pipeline', String powerOnValue = 'True', int timeoutInSecondsValue = 360) {
+    if (!vmName || !templateName) {
+        error("You should provide both host name and template name to deploy VM")
+    }
+    println("Trying to deploy VM ${vmName} from template ${templateName}...")
+    def output = vSphere buildStep: [$class: 'Deploy', template: templateName, clone: vmName, folder: vSpherePath, powerOn: powerOnValue, timeoutInSeconds: timeoutInSecondsValue, resourcePool: 'Default'], serverName: 'LC_ICS_VSPHERE'
+    println("VM was deployed successfully! VSphere path: ${vSpherePath}/${templateName}")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+String connectVSphereVmToPort(String targetHost, String port) {
+    if (!targetHost || !port) {
+        error("Vm name and port are mandatory arguments for attaching vm to port")
+    }
+
+    println("Trying to connect ${targetHost} to port ${port}...")
+    def output = vSphere buildStep: [$class: 'Reconfigure', vm: targetHost, reconfigureSteps: [[$class: "ReconfigureNetworkAdapters", deviceAction: "EDIT", deviceLabel: "Network adapter 2", standardSwitch: false, macAddress: "", portGroup: "", distributedSwitch: true, distributedPortGroup: port, distributedPortId: ""]]], serverName: 'LC_ICS_VSPHERE'
+    println("VM was connected successfully to port ${port}!")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+String disconnectVSphereVmCustomPorts(String targetHost) {
+    if (!targetHost) {
+        error("targetHost is mandatory for port removing")
+    }
+    println("Trying to disconnect ${targetHost} from current port...")
+    def output = vSphere buildStep: [$class: 'Reconfigure', vm: targetHost, reconfigureSteps: [[$class: "ReconfigureNetworkAdapters", deviceAction: "EDIT", deviceLabel: "Network adapter 2", standardSwitch: false, macAddress: "", portGroup: "", distributedSwitch: true, distributedPortGroup: "NoLanAccess", distributedPortId: ""]]], serverName: 'LC_ICS_VSPHERE'
+    println("VM was disconnected successfully from the current port!")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+String deleteVSphereVm(String targetHost, boolean failOnNoExistValue = false) {
+    if (!targetHost) {
+        error("targetHost is mandatory for vm deletion")
+    }
+    println("Trying to delete ${targetHost} VM...")
+    def output = vSphere buildStep: [$class: 'Delete', vm: targetHost, failOnNoExist: failOnNoExistValue], serverName: 'LC_ICS_VSPHERE'
+    println("VM ${targetHost} was deleted successfully!")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+String addDescriptionToVSphereVm(String targetHost, String description) {
+    if (!targetHost) {
+        error("targetHost is mandatory to add a description to vm")
+    }
+    println("Trying to add description to ${targetHost} VM...")
+    def output = vSphere buildStep: [$class: 'Reconfigure', vm: targetHost, reconfigureSteps: [[$class: "ReconfigureAnnotation", annotation: description, append: true]]], serverName: 'LC_ICS_VSPHERE'
+    println("Description was successfully added to ${targetHost}!")
+    println("vSphere output is: ${output}")
+    return output
+}
+
+boolean pingHost(String host_ip) {
+    println("Checking if the IP address ${host_ip} is reachable")
+    def isReachable
+
+    if (isUnix()) {
+        isReachable = sh(script: "ping -c 1 ${host_ip}", returnStatus: true) == 0
+    } else {
+        isReachable = bat(script: "ping -n 1 ${host_ip}", returnStatus: true) == 0
+    }
+    println("The IP address ${host_ip} is ${isReachable ? "" : "not "}reachable")
+    return isReachable
+}

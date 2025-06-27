@@ -1,0 +1,23 @@
+# Python byte-compiled, optimized, DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.bak
+*.pyc
+*.tar
+
+results
+.vscode
+.idea
+.allure
+venv
+.venv
+.vs
+
+# Ignore dynaconf secret files
+config/.secrets.toml
+config/temp_settings.toml
+isym_test_api/rest_api/models
+
+.sources/MiltestRestService/MillTestRest/obj/*
+.sources/MiltestRestService/MillTestRest/bin/*

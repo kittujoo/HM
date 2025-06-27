@@ -1,0 +1,50 @@
+#note: validated with GitVersion 5.0.0-beta.5+50.Branch.master.Sha.e484d25adfe45bccaf4cda8a7a99676ba1a739f4
+#note: earlier versions of GitVersion is not longer compartible with yml scheme
+assembly-versioning-scheme: MajorMinorPatch
+assembly-informational-format: '{SemVer}'
+mode: ContinuousDelivery
+tag-prefix: 'v-[vV]'
+continuous-delivery-fallback-tag: ci
+major-version-bump-message: '\+semver:\s?(breaking|major)'
+minor-version-bump-message: '\+semver:\s?(feature|minor)'
+patch-version-bump-message: '\+semver:\s?(fix|patch)'
+legacy-semver-padding: 4
+build-metadata-padding: 4
+commit-message-incrementing: Disabled
+branches:
+  master:
+    mode: ContinuousDelivery
+    tag:
+    increment: None
+    prevent-increment-of-merged-branch-version: true
+    track-merge-target: false
+  release:
+    regex: releases?[/-]
+    mode: ContinuousDelivery
+    tag: rc
+    increment: Patch
+    prevent-increment-of-merged-branch-version: true
+    track-merge-target: false
+    tracks-release-branches: false
+    is-release-branch: true
+  feature:
+    regex: features?[/-]
+    mode: ContinuousDeployment
+    tag: useBranchName
+    increment: None
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: false
+  pull-request:
+    regex: (pull|pull\-requests|pr)[/-]
+    mode: ContinuousDelivery
+    tag: PullRequest
+    increment: None
+    prevent-increment-of-merged-branch-version: false
+    tag-number-pattern: '[/-](?<number>\d+)[-/]'
+    track-merge-target: false
+  develop:
+    mode: ContinuousDeployment
+    tag: alpha
+    increment: None
+    prevent-increment-of-merged-branch-version: false
+    track-merge-target: true

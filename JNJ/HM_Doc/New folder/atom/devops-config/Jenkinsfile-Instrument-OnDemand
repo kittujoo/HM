@@ -1,0 +1,87 @@
+#!/usr/bin/env groovy _
+
+@NonCPS
+def setJobDescription(String description) {
+    currentBuild.description = description
+}
+
+pipeline {
+    agent {
+        node {
+            label 'ubuntu'
+            customWorkspace "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/${env.BUILD_NUMBER}"
+        }
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '15'))
+        skipDefaultCheckout true
+        timeout(time: 17, unit: 'HOURS')
+        timestamps()
+    }
+    parameters {
+        string defaultValue: 'BPFSYS-011', description: 'Enter the system name of Instrument', name: 'SYSTEM_NAME', trim: true
+        string defaultValue: '', description: 'Enter the IP of the jump server (Empower machine) that will be used to reach the system. Works with VMs managed by atom team ONLY.', name: 'JUMP_SERVER', trim: true
+        string defaultValue: 'user', description: 'Enter the Username of the jump server.', name: 'JUMP_SERVER_USERNAME', trim: true
+        string defaultValue: 'waters', description: 'Enter the Password of the jump server.', name: 'JUMP_SERVER_PASSWORD', trim: true
+        string defaultValue: 'atom:latest', description: 'Docker image name that will be used to run tests.', name: 'DOCKER_IMAGE_NAME', trim: true
+        string defaultValue: 'kiosk_smoke_test_access', description: "Enter the tag of the test(s) you want to run - Please note, this pipeline doesn't do any validation on this string.", name: 'TEST_FILTER', trim: true
+        string name: 'TIMEOUT', defaultValue: '57600', description: "Maximum test execution time in seconds after which test execution will be forcibly stopped and marked as failed", trim: true
+    }
+    environment {
+        BITBUCKET_CREDS = credentials('codeta03-readonly')
+        INSTRUMENT_CREDS = credentials('yocto_admin_passw')
+        DOCKER_REGISTRY_CREDS = credentials('cloud_jforg_id')
+    }
+    stages {
+        stage('Check for fail fast') {
+            steps {
+                script {
+                    setJobDescription("<html><ul><li>Empower VM IP ${params.JUMP_SERVER}</li><li>System name ${params.SYSTEM_NAME}</li></ul></html>")
+                    if (BUILD_NUMBER == '1')
+                        error('Aborting the first build, due to auto propagated parameters')
+                    if (!params.SYSTEM_NAME)
+                        error("SYSTEM_NAME is a mandatory parameter, but it wasn't provided")
+                    if (!params.JUMP_SERVER)
+                        error("JUMP_SERVER is a mandatory parameter, but it wasn't provided")
+                    if (!env.TIMEOUT.isInteger())
+                        error('Timeout parameter should be positive integer')
+                }
+            }
+        }
+        stage('Checkout repositories') {
+            steps {
+                dir('atom') {
+                    checkout scm
+                }
+                dir("piper-runner") {
+                    git branch: "master", credentialsId: "codeta03-readonly", url: 'https://code.waters.com/bitbucket/scm/devops/piper-runner.git'
+                }
+            }
+        }
+        stage('IntegrationTest') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE', message: "Tests execution failed.") {
+                    sh label: "Install required linux libraries", script: "sudo apt-get update && sudo apt-get --fix-broken install -y && sudo apt-get install -y python3-pip python3-dev python3.8-venv"
+                    sh label: 'IntegrationTest', returnStdout: false, script: """
+                           python3 ./piper-runner/runner.py --project-home ./atom --config_file ./atom/devops-config/config.xml --consumer_variables app_commit=$env.GIT_COMMIT system_name=${params.SYSTEM_NAME} host_username=\$INSTRUMENT_CREDS_USR host_password=\$INSTRUMENT_CREDS_PSW jump_server=${params.JUMP_SERVER} jump_server_username=${params.JUMP_SERVER_USERNAME} jump_server_password=${params.JUMP_SERVER_PASSWORD} run_in_docker_password=\$DOCKER_REGISTRY_CREDS_PSW run_in_docker_image=${params.DOCKER_IMAGE_NAME} test_filter="${params.TEST_FILTER}" timeout=${params.TIMEOUT}
+                        """
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'atom/results/**/*', excludes: 'atom/results/allure-results/**/*', fingerprint: true
+                    allure includeProperties: false, jdk: '', results: [[path: 'atom/results/allure-results/']]
+                    junit allowEmptyResults: true, testResults: "atom/results/pytest-results/*.*"
+                }
+            }
+        }
+    }
+    post {
+        // Clean after build
+        always {
+            script {
+                cleanWs()
+            }
+        }
+    }
+}

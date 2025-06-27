@@ -1,0 +1,125 @@
+#!/usr/bin/env groovy _
+
+def test_filters = [
+        "Atom-Pipeline-Simulation-CI-ISPP" : "kiosk and simulation or ui",
+        "Atom-Pipeline-Simulation-CI-iSym" : "isym"
+    ]
+
+pipeline {
+    agent {
+        node {
+            label 'ubuntu'
+            customWorkspace "${env.JENKINS_HOME}/workspace/${env.JOB_NAME}/${env.BUILD_NUMBER}"
+        }
+    }
+    triggers {
+        cron('0 19 * * 0-4')
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        skipDefaultCheckout true
+        timeout(time: 10, unit: 'HOURS')
+        timestamps()
+    }
+
+    environment {
+        BITBUCKET_CREDS = credentials('codeta03-readonly')
+    }
+    stages {
+        stage('Checkout atom repository') {
+            steps {
+                dir('atom') {
+                    checkout scm
+                }
+            }
+        }
+        stage('Check test filter') {
+            steps {
+                script {
+                     def job_name = env.JOB_NAME.split('/')[0]
+                     def test_filter = test_filters[job_name]
+                     if (!test_filter)
+                         error("Test filters not found for [$job_name] job, available test filters: $test_filters")
+                     env.TEST_FILTER = test_filter
+                     env.TEST_TYPE = job_name.split('-')[-1] + "-ATOM"
+                }
+            }
+        }
+        stage('Clone piper repository') {
+            steps {
+                dir("piper-runner") {
+                    git branch: "master", credentialsId: "codeta03-readonly", url: 'https://code.waters.com/bitbucket/scm/devops/piper-runner.git'
+                }
+            }
+        }
+        stage('Deploy simulation environment') {
+            steps {
+                dir("piper-runner") {
+                    script {
+                        def target_branch = "latest_${env.BRANCH_NAME}"
+                        def output = sh(script: "python3 runner.py Deploy --isym ${target_branch} --platform ${target_branch} --deployed-by ${env.BUILD_USER_EMAIL} --recipe ${env.TEST_TYPE}", returnStdout: true)
+                        def json = ""
+                        def matcher = output =~ /(?s)(\{.*})/
+                        if (matcher.find()) {
+                            json = matcher.group(1)
+                            matcher = null
+                        } else {
+                            matcher = null
+                            currentBuild.result = 'ABORTED'
+                            error("Failed to obtain simulator env info, check details: [$output]")
+                        }
+                        println("Deployment configuration:\n$json")
+                        def jsonObj = readJSON text: json
+                        env.ISYM_IP = jsonObj['AccessIp'] ?: ''
+                        env.ISYM_VERSION = jsonObj?.get('Inputs')?.get('Isym-app') ?: ""
+                        env.PLATFORM_VERSION = jsonObj?.get('Inputs')?.get('Platform') ?: ""
+                        env.DEPLOYMENT_ID = jsonObj['DeploymentId']
+                        if (!(env.ISYM_IP ==~ /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/)) {
+                            currentBuild.result = 'ABORTED'
+                            error("Failed to obtain simulator env ip, check details: [$output]")
+                        }
+                        currentBuild.description = "<div>Isym-app: ${env.ISYM_VERSION ?: "undefined"}</div>" +
+                                "<div>Platform: ${env.PLATFORM_VERSION ?: "undefined"}</div>"
+                    }
+                }
+            }
+        }
+        stage('IntegrationTest') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE', message: "Tests execution failed.") {
+                    sh label: 'IntegrationTest', returnStdout: false, script: """
+                           sudo apt-get update && sudo apt-get --fix-broken install -y && sudo apt-get install -y python3-pip python3-dev python3.8-venv
+                           python3 ./piper-runner/runner.py --project-home ./atom --config_file ./atom/devops-config/config-Simulation.xml --consumer_variables app_commit=${env.GIT_COMMIT} host=${env.ISYM_IP} test_filter="${env.TEST_FILTER}" timeout=36000
+                        """
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'atom/results/**/*', excludes: 'atom/results/allure-results/**/*', fingerprint: true
+                    allure includeProperties: false, jdk: '', results: [[path: 'atom/results/allure-results/']]
+                    junit allowEmptyResults: true, testResults: "atom/results/pytest-results/*.*"
+                }
+            }
+        }
+        stage('Delete simulated environment') {
+            when {
+                expression { env.DEPLOYMENT_ID != null && env.DEPLOYMENT_ID != '' }
+            }
+            steps {
+                dir("piper-runner") {
+                    script {
+                        sh(script: "python3 runner.py Delete-Deployment --deployment-id ${env.DEPLOYMENT_ID}", returnStdout: true)
+                    }
+                }
+            }
+        }
+    }
+    post {
+        // Clean after build
+        always {
+            script {
+                cleanWs()
+            }
+        }
+    }
+}
