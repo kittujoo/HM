@@ -57,7 +57,65 @@ def youTube_search():
     finally:
         driver.quit()
         
+def get_free_delivery():
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    
+    driver.get("https://www.amazon.in/s?k=iphone")
+
+    # # Wait until at least one "FREE Delivery" span appears
+    # WebDriverWait(driver, 10).until(
+    #     EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'FREE Delivery')]"))
+    # )
+
+    # Get all FREE Delivery textst
+    elements = (driver.find_element(By.XPATH, "//input[@type='submit']").text)
+    print(f"Number of elements found: {(elements)}")
+    elements = (driver.find_elements(By.XPATH, "//span[contains(text(), 'FREE Delivery')]"))
+    print(f"Number of elements found: {(elements)}")
+    elements = driver.find_elements(By.XPATH, "//span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'free delivery')]")
+
+    for el in elements:
+        print(el.text)
+
+
+# Online Python compiler (interpreter) to run Python online.
+# Write Python 3 code in this online editor and run it.
+# print("Try programiz.pro")
+# a = 'abc'
+# b = 'bda'
+
+# def check_anagram(st1,st2):
+#     c =''
+#     for ch in st1:
+#         if ch in st2:
+#             c += ch
+#     if c == a:
+#          return True
+#     else :
+#         return False
+
+# print(f"Is anagram {check_anagram(a,b)}")
+
+
+# def check_repeted_chars(st):
+#     char = ''
+#     for ch in st:
+#         if ch not in char:
+#             char += ch
+#         else:
+#             print(f"This is repeted char {ch}")
+# check_repeted_chars("abcddss")
+            
         
+    
+
         
 if __name__ == "__main__":
-    youTube_search()
+    # youTube_search()
+    get_free_delivery()

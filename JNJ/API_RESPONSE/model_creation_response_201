@@ -1,0 +1,27 @@
+{
+  "modelId": "09a5386a-6f17-4e68-931e-18d0be62eb40",
+  "name": "kk-model-01",
+  "tenantId": "mantle",
+  "globalModelCode": "mantl-57adedaf-f6ff-4c13-89dc-ec50a7216247",
+  "attestationType": "X509_INTERNALLY_MANAGED",
+  "connectivitySoftware": "DSP_AGENT",
+  "connectivityModes": [
+    "CONNECTED"
+  ],
+  "properties": [
+    {
+      "name": "enableDebug",
+      "displayName": "Enable device diagnostic debug",
+      "type": "BOOLEAN",
+      "editable": true,
+      "defaultDesiredValue": false
+    },
+    {
+      "name": "enableLogging",
+      "displayName": "Enable device diagnostic logging",
+      "type": "BOOLEAN",
+      "editable": true,
+      "defaultDesiredValue": true
+    }
+  ]
+}
