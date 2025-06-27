@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-06-27T11:44:04.722208" rpa="false" schemaversion="5">
+<suite id="s1" name="New Waveshare Master" source="C:\Users\Krushnakumara.p\OneDrive - Happiest Minds Technologies Limited\Documents\Eton_HDVC\INTSDN01_1\modbus_rtu_framework\tests\robo_scripts\test\new_waveshare_master.robot">
+<test id="s1-t1" name="Write And Read PWM1" line="6">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:04.924750" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:04.925643" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:04.891380" elapsed="0.034508"/>
+</kw>
+<kw name="Write PWM1" owner="ws">
+<arg>100</arg>
+<status status="PASS" start="2025-06-27T11:44:04.927050" elapsed="0.035363"/>
+</kw>
+<kw name="Read Taco1" owner="ws">
+<msg time="2025-06-27T11:44:04.978650" level="INFO">${val} = 6551</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:04.962805" elapsed="0.015950"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:04.979449" level="INFO">Taco1 Value: 6551</msg>
+<arg>Taco1 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:04.979271" elapsed="0.000215"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:04.980025" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:04.979858" elapsed="0.000319"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:04.890830" elapsed="0.089627"/>
+</test>
+<test id="s1-t2" name="Write And Read PWM2" line="13">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:04.985111" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:04.985962" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:04.982182" elapsed="0.003866"/>
+</kw>
+<kw name="Write PWM2" owner="ws">
+<arg>77</arg>
+<status status="PASS" start="2025-06-27T11:44:04.986347" elapsed="0.034147"/>
+</kw>
+<kw name="Read Taco2" owner="ws">
+<msg time="2025-06-27T11:44:05.053270" level="INFO">${val} = 77</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.020755" elapsed="0.032617"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.054398" level="INFO">Taco2 Value: 77</msg>
+<arg>Taco2 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.054041" elapsed="0.000435"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.055002" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.054796" elapsed="0.000363"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:04.981296" elapsed="0.074152"/>
+</test>
+<test id="s1-t3" name="Write And Read PWM3" line="20">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.059725" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.060257" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.057286" elapsed="0.003096"/>
+</kw>
+<kw name="Write PWM3" owner="ws">
+<arg>55</arg>
+<status status="PASS" start="2025-06-27T11:44:05.061613" elapsed="0.038372"/>
+</kw>
+<kw name="Read Taco3" owner="ws">
+<msg time="2025-06-27T11:44:05.133777" level="INFO">${val} = 55</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.100455" elapsed="0.033391"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.134638" level="INFO">Taco3 Value: 55</msg>
+<arg>Taco3 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.134379" elapsed="0.000321"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.135082" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.134933" elapsed="0.000263"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.056336" elapsed="0.079058"/>
+</test>
+<test id="s1-t4" name="Write And Read PWM4" line="27">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.138671" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.138921" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.136810" elapsed="0.002162"/>
+</kw>
+<kw name="Write PWM4" owner="ws">
+<arg>200</arg>
+<status status="PASS" start="2025-06-27T11:44:05.139158" elapsed="0.025384"/>
+</kw>
+<kw name="Read Taco4" owner="ws">
+<msg time="2025-06-27T11:44:05.180485" level="INFO">${val} = 200</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.164865" elapsed="0.015739"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.181954" level="INFO">Taco4 Value: 200</msg>
+<arg>Taco4 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.181223" elapsed="0.000998"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.182991" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.182751" elapsed="0.000346"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.136180" elapsed="0.047164"/>
+</test>
+<test id="s1-t5" name="Read Taco5" line="34">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.186428" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.186635" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.184793" elapsed="0.001886"/>
+</kw>
+<kw name="Read Taco5" owner="ws">
+<msg time="2025-06-27T11:44:05.226627" level="INFO">${val} = 2</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.186934" elapsed="0.039790"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.227794" level="INFO">Taco5 Value: 2</msg>
+<arg>Taco5 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.227379" elapsed="0.000564"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.228567" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.228339" elapsed="0.000387"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.184129" elapsed="0.044947"/>
+</test>
+<test id="s1-t6" name="Read Taco6" line="40">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.233780" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.234088" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.231063" elapsed="0.003086"/>
+</kw>
+<kw name="Read Taco6" owner="ws">
+<msg time="2025-06-27T11:44:05.272373" level="INFO">${val} = 2</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.234411" elapsed="0.038013"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.272883" level="INFO">Taco6 Value: 2</msg>
+<arg>Taco6 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.272711" elapsed="0.000212"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.274564" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.273233" elapsed="0.001487"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.230313" elapsed="0.044792"/>
+</test>
+<test id="s1-t7" name="Read Taco7" line="46">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.294891" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.295183" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.277765" elapsed="0.017482"/>
+</kw>
+<kw name="Read Taco7" owner="ws">
+<msg time="2025-06-27T11:44:05.318782" level="INFO">${val} = 8</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.295574" elapsed="0.023277"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.319566" level="INFO">Taco7 Value: 8</msg>
+<arg>Taco7 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.319357" elapsed="0.000265"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.319997" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.319853" elapsed="0.000241"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.277175" elapsed="0.043086"/>
+</test>
+<test id="s1-t8" name="Read Taco8" line="52">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.323883" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.324512" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.321858" elapsed="0.002743"/>
+</kw>
+<kw name="Read Taco8" owner="ws">
+<msg time="2025-06-27T11:44:05.334425" level="INFO">${val} = 189</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.324907" elapsed="0.009572"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.335156" level="INFO">Taco8 Value: 189</msg>
+<arg>Taco8 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.334979" elapsed="0.000219"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.335663" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.335513" elapsed="0.000248"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.321300" elapsed="0.014621"/>
+</test>
+<test id="s1-t9" name="Read Taco9" line="58">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.339147" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.339397" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.337567" elapsed="0.001882"/>
+</kw>
+<kw name="Read Taco9" owner="ws">
+<msg time="2025-06-27T11:44:05.367564" level="INFO">${val} = 6551</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.339633" elapsed="0.028008"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.368308" level="INFO">Taco9 Value: 6551</msg>
+<arg>Taco9 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.368092" elapsed="0.000274"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.368761" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.368607" elapsed="0.000267"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.337041" elapsed="0.032049"/>
+</test>
+<test id="s1-t10" name="Read Taco10" line="64">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.372072" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.372337" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.370318" elapsed="0.002071"/>
+</kw>
+<kw name="Read Taco10" owner="ws">
+<msg time="2025-06-27T11:44:05.395831" level="INFO">${val} = 77</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.372694" elapsed="0.023203"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.396639" level="INFO">Taco10 Value: 77</msg>
+<arg>Taco10 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.396406" elapsed="0.000292"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.397483" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.397174" elapsed="0.000477"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.369857" elapsed="0.028058"/>
+</test>
+<test id="s1-t11" name="Read Taco11" line="70">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.401408" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.401786" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.399294" elapsed="0.002590"/>
+</kw>
+<kw name="Read Taco11" owner="ws">
+<msg time="2025-06-27T11:44:05.426191" level="INFO">${val} = 55</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.402323" elapsed="0.023985"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.427824" level="INFO">Taco11 Value: 55</msg>
+<arg>Taco11 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.427402" elapsed="0.000543"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.428777" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.428445" elapsed="0.000486"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.398576" elapsed="0.030685"/>
+</test>
+<test id="s1-t12" name="Read Taco12" line="76">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.435062" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.435606" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.430482" elapsed="0.005240"/>
+</kw>
+<kw name="Read Taco12" owner="ws">
+<msg time="2025-06-27T11:44:05.475404" level="INFO">${val} = 200</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.436274" elapsed="0.039362"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.476741" level="INFO">Taco12 Value: 200</msg>
+<arg>Taco12 Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.476062" elapsed="0.000852"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.477374" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.477187" elapsed="0.000317"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.429883" elapsed="0.047866"/>
+</test>
+<test id="s1-t13" name="Read Relay" line="82">
+<kw name="Connect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.481107" level="INFO">Connecting to Modbus slave on COM4...</msg>
+<msg time="2025-06-27T11:44:05.482790" level="INFO">Modbus master connected.</msg>
+<doc>Connect to the Waveshare Modbus master using config.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.479006" elapsed="0.003899"/>
+</kw>
+<kw name="Read Relay" owner="ws">
+<msg time="2025-06-27T11:44:05.505122" level="INFO">${val} = 2</msg>
+<var>${val}</var>
+<status status="PASS" start="2025-06-27T11:44:05.483246" elapsed="0.021935"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-06-27T11:44:05.506069" level="INFO">Relay Value: 2</msg>
+<arg>Relay Value: ${val}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.505847" elapsed="0.000273"/>
+</kw>
+<kw name="Disconnect Waveshare Master" owner="ws">
+<msg time="2025-06-27T11:44:05.506493" level="INFO">Closing Modbus master connection...</msg>
+<doc>Disconnect the Modbus master.</doc>
+<status status="PASS" start="2025-06-27T11:44:05.506357" elapsed="0.000245"/>
+</kw>
+<status status="PASS" start="2025-06-27T11:44:05.478292" elapsed="0.029197"/>
+</test>
+<status status="PASS" start="2025-06-27T11:44:04.724627" elapsed="0.785937"/>
+</suite>
+<statistics>
+<total>
+<stat pass="13" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="New Waveshare Master" id="s1" pass="13" fail="0" skip="0">New Waveshare Master</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

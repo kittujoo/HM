@@ -1,0 +1,135 @@
+{
+    "fan_fault": {
+        "device": {
+            "name": "Waveshare1",
+            "type": "output",
+            "protocol": "RTU",
+            "port":"COM3",
+            "baudrate": 9600,
+            "parity": "N",
+            "stopbits": 1,
+            "bytesize": 8,
+            "function_code": "HR",
+            "slve_id": 1
+        },
+        "ff1": {
+            "channel": 1,
+            "type": "input",
+            "value": 3.3,
+            "signal_type": "digital",
+            "current_state": "Enabled",
+            "description": "Fan Fault Monitor 1"
+        },
+        "ff2": {
+            "channel": 2,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Fault Monitor 2"
+        },
+        "ff3": {
+            "channel": 3,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Fault Monitor 3"
+        }
+    },
+    "fan_enable": {
+        "device": {
+            "name": "Waveshare1",
+            "type": "input",
+            "protocol": "RTU",
+            "port":"COM3",
+            "baudrate": 9600,
+            "parity": "N",
+            "stopbits": 1,
+            "bytesize": 8,
+            "function_code": "HR",
+            "slve_id": 1
+        },
+        "fe1": {
+            "name": "Waveshare1",
+            "address": 4,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Enable 1"
+        },
+        "fe2": {
+            "channel": 5,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Enable 2"
+        },
+        "fe3": {
+            "channel": 6,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Enable 3"
+        }
+    },
+    "fan_open_load": {
+        "device": {
+            "name": "Waveshare2",
+            "type": "input",
+            "protocol": "RTU",
+            "port":"COM3",
+            "baudrate": 9600,
+            "parity": "N",
+            "stopbits": 1,
+            "bytesize": 8,
+            "function_code": "HR",
+            "slve_id": 1
+        },
+        "fol1": {
+            "channel": 1,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Open Load Monitor 1"
+        },
+        "fol2": {
+            "channel": 2,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Open Load Monitor 2"
+        },
+        "fol3": {
+            "channel": 3,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Open Load Monitor 3"
+        }
+    },
+    "fan_diagnostic": {
+        "device": {
+            "name": "Waveshare2",
+            "type": "input",
+            "protocol": "RTU",
+            "port":"COM3",
+            "baudrate": 9600,
+            "parity": "N",
+            "stopbits": 1,
+            "bytesize": 8,
+            "function_code": "HR",
+            "slve_id": 1
+        },
+        "fd1": {
+            "channel": 1,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Diagnostic 1"
+        },
+        "fd2": {
+            "channel": 2,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Diagnostic 2"
+        },
+        "fd3": {
+            "channel": 3,
+            "value": 3.3,
+            "current_state": "Enabled",
+            "description": "Fan Diagnostic 3"
+        }
+    }
+
+    
+}

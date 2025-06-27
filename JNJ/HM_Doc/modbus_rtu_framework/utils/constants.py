@@ -1,0 +1,123 @@
+# Constants for the PWM generator
+PWMG = "PWM_GENERATOR"
+PWMG1 = "PWM_GENERATOR1"
+PWMG2 = "PWM_GENERATOR2"
+PWMG3 = "PWM_GENERATOR3"
+PWMG4 = "PWM_GENERATOR4"
+PWMG5 = "PWM_GENERATOR5"
+PWMG6 = "PWM_GENERATOR6"
+PWMG7 = "PWM_GENERATOR7"
+PWMG8 = "PWM_GENERATOR8"
+PWMG9 = "PWM_GENERATOR9"
+PWMG10 = "PWM_GENERATOR10"
+PWMG11 = "PWM_GENERATOR11"
+PWMG12 = "PWM_GENERATOR12"
+
+# Constants for the fan open load enable
+FOLE = "FAN_OPEN_LOAD_ENABLE"
+FOLE1 = "FAN_OPEN_LOAD_ENABLE1"
+FOLE2 = "FAN_OPEN_LOAD_ENABLE2"
+FOLE3 = "FAN_OPEN_LOAD_ENABLE3"
+
+# Constants for the fan diagnostics enable
+FDE = "FAN_DIAGNOSTICS_ENABLE"
+FDE1 = "FAN_DIAGNOSTICS_ENABLE1"
+FDE2 = "FAN_DIAGNOSTICS_ENABLE2"
+FDE3 = "FAN_DIAGNOSTICS_ENABLE3"
+
+
+# Constants for the fan enable
+FE = "FAN_ENABLE"
+FE1 = "FAN_ENABLE1"
+FE2 = "FAN_ENABLE2"
+FE3 = "FAN_ENABLE3"
+
+# Constants for the taco monitor
+TM = "TACO_MONITOR"
+TM1 = "TACO_MONITOR1"
+TM2 = "TACO_MONITOR2"
+TM3 = "TACO_MONITOR3"
+TM4 = "TACO_MONITOR4"
+TM5 = "TACO_MONITOR5"
+TM6 = "TACO_MONITOR6"
+TM7 = "TACO_MONITOR7"
+TM8 = "TACO_MONITOR8"
+TM9 = "TACO_MONITOR9"
+TM10 = "TACO_MONITOR10"
+TM11 = "TACO_MONITOR11"
+TM12 = "TACO_MONITOR12"
+
+# Constants for the taco monitor fault TMF1 to TMF12
+TMF = "TACO_MONITOR_FAULT"
+TMF1 = "TACO_MONITOR_FAULT1"
+TMF2 = "TACO_MONITOR_FAULT2"
+TMF3 = "TACO_MONITOR_FAULT3"
+TMF4 = "TACO_MONITOR_FAULT4"
+TMF5 = "TACO_MONITOR_FAULT5"
+TMF6 = "TACO_MONITOR_FAULT6"
+TMF7 = "TACO_MONITOR_FAULT7"
+TMF8 = "TACO_MONITOR_FAULT8"
+TMF9 = "TACO_MONITOR_FAULT9"
+TMF10 = "TACO_MONITOR_FAULT10"
+TMF11 = "TACO_MONITOR_FAULT11"
+TMF12 = "TACO_MONITOR_FAULT12"
+
+# Constants for the fault monitor
+FM = "FAULT_MONITOR"
+FM1 = "FAULT_MONITOR1"
+FM2 = "FAULT_MONITOR2"
+FM3 = "FAULT_MONITOR3"
+
+
+# Constants for the power sensing
+PS = "POWER_SENSING"
+PS1 = "POWER_SENSING1"
+
+# Constants for the current sensing
+CS = "CURRENT_SENSING"
+CS1 = "CURRENT_SENSING1"
+CS2 = "CURRENT_SENSING2"
+CS3 = "CURRENT_SENSING3"
+
+# Constants for the tempature sensing
+TS = "TEMPERATURE_SENSING"
+TS1 = "TEMPERATURE_SENSING1"
+TS2 = "TEMPERATURE_SENSING2"
+TS3 = "TEMPERATURE_SENSING3"
+TS4 = "TEMPERATURE_SENSING4"
+
+VH = "VOLTAGE_HIGH"
+VL = "VOLTAGE_LOW"
+
+G1CH = "G1_CURRENT_HIGH"
+G2CH = "G2_CURRENT_HIGH"
+G3CH = "G3_CURRENT_HIGH"
+
+TZ1H = "TEMPERATURE_ZONE1_HIGH"
+TZ2H = "TEMPERATURE_ZONE2_HIGH"
+TZ3H = "TEMPERATURE_ZONE3_HIGH"
+TZ4H = "TEMPERATURE_ZONE4_HIGH"
+
+
+REG_BIT_FLAG = 16
+# Required columns for the Excel file
+REQUIRED_COLUMNS = [
+    "module",
+    "reg_type",
+    "reg_address",
+    "reg_bit_flag",
+    "reg_value",
+    "min_value",
+    "max_value",
+    "error_value",
+    "default_value",
+    "resolution",
+    "simulation",
+]
+
+DATA_FILE_PATH = "files\\data_true.xlsx"  # Path to the Excel file
+JSON_FILE_PATH = "config\\approched_data.json"  # Path to the JSON file
+LOG_FILE_PATH = "logs\\modbus_rtu_framework.log"  # Path to the log file
+CONFIG_PATH = "config\\new_config.json"  # Path to the config file
+
+REFRESH_RATE = 0.5 # 500 miliseconds

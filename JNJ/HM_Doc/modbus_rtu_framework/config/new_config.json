@@ -1,0 +1,97 @@
+{
+    "device": {
+        "name": "Waveshare_relay",
+        "protocol": "RTU",
+        "port": "COM4",
+        "baudrate": 9600,
+        "parity": "N",
+        "stopbits": 1,
+        "bytesize": 8
+    },
+    "taco1": {
+        "reg_address": 1,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco2": {
+        "reg_address": 2,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco3": {
+        "reg_address": 3,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco4": {
+        "reg_address": 4,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco5": {
+        "reg_address": 5,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco6": {
+        "reg_address": 6,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco7": {
+        "reg_address": 7,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco8": {
+        "reg_address": 8,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco9": {
+        "reg_address": 1,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco10": {
+        "reg_address": 2,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco11": {
+        "reg_address": 3,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "taco12": {
+        "reg_address": 4,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "relay":{
+        "reg_address": 5,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "pwm1": {
+        "reg_address": 1,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "pwm2": {
+        "reg_address": 2,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "pwm3": {
+        "reg_address": 3,
+        "function_code": "HR",
+        "slave_id": 1
+    },
+    "pwm4": {
+        "reg_address": 4,
+        "function_code": "HR",
+        "slave_id": 1
+    }
+
+}
